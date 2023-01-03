@@ -1,0 +1,12 @@
+# Main entrypoint of the workflow.
+
+from datetime import datetime
+
+start_time = datetime.now()
+print(start_time)
+
+# Snakemake configuration
+configfile: "config/config.yaml"
+
+include : "rules/canu.smk"
+
