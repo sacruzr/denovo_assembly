@@ -1,12 +1,22 @@
 # Main entrypoint of the workflow.
-
 from datetime import datetime
+
 
 start_time = datetime.now()
 print(start_time)
 
-# Snakemake configuration
-configfile: "config/config.yaml"
+# resources params
+include : "rules/common.smk"
 
+
+rule all:
+	input:
+		expand([
+			'results/{sample}/assembly/canu'],
+			 sample = list(sample_units['sample_name'].unique()))
+
+
+
+include : "rules/read_correction.smk"
 include : "rules/canu.smk"
 

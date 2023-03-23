@@ -1,0 +1,5 @@
+sample_name	read_file_path
+VAP_009	resources/sequences/VAP_009.fastq.gz
+VAP_011	resources/sequences/VAP_011.fastq.gz
+VAP_005	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/VAP_005.fastq.gz
+INB_841	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/INB_841.fastq.gz

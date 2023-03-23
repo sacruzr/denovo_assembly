@@ -1,0 +1,1268 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+all                         1              1              1
+get_read_list               2              1              1
+produce_necat_config        2             60             60
+run_correction              2             60             60
+total                       7              1             60
+
+Select jobs to execute...
+
+[Fri Jan 27 21:01:51 2023]
+rule get_read_list:
+    input: resources/sequences/VAP_011.fastq.gz
+    output: results/VAP_011/correction/read_list.txt
+    jobid: 6
+    reason: Missing output files: results/VAP_011/correction/read_list.txt
+    wildcards: sample=VAP_011
+    resources: tmpdir=/tmp
+
+[Fri Jan 27 21:01:51 2023]
+rule get_read_list:
+    input: resources/sequences/VAP_009.fastq.gz
+    output: results/VAP_009/correction/read_list.txt
+    jobid: 3
+    reason: Missing output files: results/VAP_009/correction/read_list.txt
+    wildcards: sample=VAP_009
+    resources: tmpdir=/tmp
+
+Building DAG of jobs...
+Building DAG of jobs...
+Using shell: /bin/bash
+Using shell: /bin/bash
+Provided cores: 60
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Select jobs to execute...
+2023-01-27 21:01:51.421293
+2023-01-27 21:01:51.421319
+[Fri Jan 27 21:01:51 2023]
+Finished job 3.
+1 of 7 steps (14%) done
+Select jobs to execute...
+[Fri Jan 27 21:01:51 2023]
+Finished job 6.
+2 of 7 steps (29%) done
+
+[Fri Jan 27 21:01:51 2023]
+rule produce_necat_config:
+    input: results/VAP_009/correction/read_list.txt
+    output: results/VAP_009/correction/config.txt
+    jobid: 2
+    reason: Missing output files: results/VAP_009/correction/config.txt; Input files updated by another job: results/VAP_009/correction/read_list.txt
+    wildcards: sample=VAP_009
+    threads: 60
+    resources: tmpdir=/tmp
+
+[Fri Jan 27 21:01:51 2023]
+Finished job 2.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Fri Jan 27 21:01:51 2023]
+rule produce_necat_config:
+    input: results/VAP_011/correction/read_list.txt
+    output: results/VAP_011/correction/config.txt
+    jobid: 5
+    reason: Missing output files: results/VAP_011/correction/config.txt; Input files updated by another job: results/VAP_011/correction/read_list.txt
+    wildcards: sample=VAP_011
+    threads: 60
+    resources: tmpdir=/tmp
+
+[Fri Jan 27 21:01:51 2023]
+Finished job 5.
+4 of 7 steps (57%) done
+Select jobs to execute...
+
+[Fri Jan 27 21:01:51 2023]
+rule run_correction:
+    input: results/VAP_011/correction/config.txt
+    output: results/VAP_011/correction/NECAT
+    log: results/VAP_011/correction/correction.log
+    jobid: 4
+    reason: Missing output files: results/VAP_011/correction/NECAT; Input files updated by another job: results/VAP_011/correction/config.txt
+    wildcards: sample=VAP_011
+    threads: 60
+    resources: tmpdir=/tmp
+
+Smartmatch is experimental at /home/scruz/software/NECAT/Linux-amd64/bin/Plgd/Project.pm line 263.
+2023-01-27 21:01:51 [Info] Start correcting rawreads.
+2023-01-27 21:01:51 [Info] Start filtering reads for consensus.
+2023-01-27 21:01:51 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_pprr.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_pprr.sh.log
+2023-01-27 21:16:19 [Info] End filtering reads for consensus.
+2023-01-27 21:16:19 [Info] Start correcting iteratively for cns 1..
+2023-01-27 21:16:19 [Info] Start aliging for cns 1.
+2023-01-27 21:16:19 [Info] Start making vol for cns 1.
+2023-01-27 21:16:19 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_mk_vol.sh.log
+2023-01-27 21:18:39 [Info] End making vol for cns 1.
+2023-01-27 21:18:39 [Info] Start aligning vol for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 0 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 1 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 2 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 3 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 4 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 5 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 6 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 7 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 8 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 9 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 10 for cns 1.
+2023-01-27 21:18:39 [Info] Parallelly start aligning vol 11 for cns 1.
+2023-01-27 21:18:39 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_0.sh.log
+2023-01-27 21:39:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_1.sh.log
+2023-01-27 21:59:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_2.sh.log
+2023-01-27 22:17:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_3.sh.log
+2023-01-27 22:34:05 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_4.sh.log
+2023-01-27 22:49:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_5.sh.log
+2023-01-27 23:02:08 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_6.sh.log
+2023-01-27 23:13:18 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_7.sh.log
+2023-01-27 23:22:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_8.sh.log
+2023-01-27 23:30:48 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_9.sh.log
+2023-01-27 23:37:21 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_10.sh.log
+2023-01-27 23:42:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_al_vol_11.sh.log
+2023-01-27 23:44:53 [Info] End aligning vol 0 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 1 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 2 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 3 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 4 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 5 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 6 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 7 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 8 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 9 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 10 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol 11 for cns 1.
+2023-01-27 23:44:53 [Info] End aligning vol for cns 1.
+2023-01-27 23:44:53 [Info] Start catenating vol for cns 1.
+2023-01-27 23:44:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cat_vol.sh.log
+2023-01-27 23:45:19 [Info] End catenating vol for cns 1.
+2023-01-27 23:45:19 [Info] End aliging for cns 1.
+2023-01-27 23:45:19 [Info] Start correcting for cns 1.
+2023-01-27 23:45:19 [Info] Start partitioning candidates.
+2023-01-27 23:45:19 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_part.sh.log
+2023-01-27 23:46:23 [Info] End partitioning candidates.
+2023-01-27 23:46:23 [Info] Start correcting part for cns 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 0 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 1 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 2 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 3 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 4 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 5 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 6 for correcting 1.
+2023-01-27 23:46:23 [Info] Parallelly start aligning volumn 7 for correcting 1.
+2023-01-27 23:46:23 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_0.sh.log
+2023-01-27 23:53:01 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_1.sh.log
+2023-01-27 23:59:34 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_2.sh.log
+2023-01-28 00:06:41 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_3.sh.log
+2023-01-28 00:13:56 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_4.sh.log
+2023-01-28 00:20:57 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_5.sh.log
+2023-01-28 00:28:06 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_6.sh.log
+2023-01-28 00:35:07 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cns_part_7.sh.log
+2023-01-28 00:39:29 [Info] End aligning volumn 0 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 1 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 2 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 3 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 4 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 5 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 6 for correcting 1.
+2023-01-28 00:39:29 [Info] End aligning volumn 7 for correcting 1.
+2023-01-28 00:39:29 [Info] End correcting part for cns 1.
+2023-01-28 00:39:29 [Info] Start catenating reads for cns 1..
+2023-01-28 00:39:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_cat_cns.sh.log
+2023-01-28 00:39:49 [Info] End catenating reads for cns 1..
+2023-01-28 00:39:49 [Info] Start reordering for cns 1.
+2023-01-28 00:39:49 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_1_reorder.sh.log
+2023-01-28 00:43:09 [Info] End reordering for cns 1.
+2023-01-28 00:43:23 [Info] End correcting for cns 1.
+2023-01-28 00:43:29 [Info] End correcting iteratively for cns 1..
+2023-01-28 00:43:29 [Info] Start correcting iteratively for cns 2..
+2023-01-28 00:43:29 [Info] Start aliging for cns 2.
+2023-01-28 00:43:29 [Info] Start making vol for cns 2.
+2023-01-28 00:43:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_mk_vol.sh.log
+2023-01-28 00:45:49 [Info] End making vol for cns 2.
+2023-01-28 00:45:49 [Info] Start aligning vol for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 0 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 1 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 2 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 3 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 4 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 5 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 6 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 7 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 8 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 9 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 10 for cns 2.
+2023-01-28 00:45:49 [Info] Parallelly start aligning vol 11 for cns 2.
+2023-01-28 00:45:49 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_0.sh.log
+2023-01-28 00:59:48 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_1.sh.log
+2023-01-28 01:12:32 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_2.sh.log
+2023-01-28 01:23:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_3.sh.log
+2023-01-28 01:34:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_4.sh.log
+2023-01-28 01:44:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_5.sh.log
+2023-01-28 01:53:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_6.sh.log
+2023-01-28 02:01:30 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_7.sh.log
+2023-01-28 02:08:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_8.sh.log
+2023-01-28 02:14:05 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_9.sh.log
+2023-01-28 02:19:04 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_10.sh.log
+2023-01-28 02:23:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_al_vol_11.sh.log
+2023-01-28 02:25:34 [Info] End aligning vol 0 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 1 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 2 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 3 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 4 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 5 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 6 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 7 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 8 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 9 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 10 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol 11 for cns 2.
+2023-01-28 02:25:34 [Info] End aligning vol for cns 2.
+2023-01-28 02:25:34 [Info] Start catenating vol for cns 2.
+2023-01-28 02:25:34 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cat_vol.sh.log
+2023-01-28 02:26:00 [Info] End catenating vol for cns 2.
+2023-01-28 02:26:00 [Info] End aliging for cns 2.
+2023-01-28 02:26:00 [Info] Start correcting for cns 2.
+2023-01-28 02:26:00 [Info] Start partitioning candidates.
+2023-01-28 02:26:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_part.sh.log
+2023-01-28 02:27:10 [Info] End partitioning candidates.
+2023-01-28 02:27:10 [Info] Start correcting part for cns 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 0 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 1 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 2 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 3 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 4 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 5 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 6 for correcting 2.
+2023-01-28 02:27:10 [Info] Parallelly start aligning volumn 7 for correcting 2.
+2023-01-28 02:27:10 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_0.sh.log
+2023-01-28 02:34:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_1.sh.log
+2023-01-28 02:43:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_2.sh.log
+2023-01-28 02:52:38 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_3.sh.log
+2023-01-28 03:01:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_4.sh.log
+2023-01-28 03:10:54 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_5.sh.log
+2023-01-28 03:20:34 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_6.sh.log
+2023-01-28 03:29:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cns_part_7.sh.log
+2023-01-28 03:35:18 [Info] End aligning volumn 0 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 1 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 2 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 3 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 4 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 5 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 6 for correcting 2.
+2023-01-28 03:35:18 [Info] End aligning volumn 7 for correcting 2.
+2023-01-28 03:35:18 [Info] End correcting part for cns 2.
+2023-01-28 03:35:18 [Info] Start catenating reads for cns 2..
+2023-01-28 03:35:18 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_cat_cns.sh.log
+2023-01-28 03:35:36 [Info] End catenating reads for cns 2..
+2023-01-28 03:35:36 [Info] Start reordering for cns 2.
+2023-01-28 03:35:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_2_reorder.sh.log
+2023-01-28 03:38:56 [Info] End reordering for cns 2.
+2023-01-28 03:39:10 [Info] End correcting for cns 2.
+2023-01-28 03:39:16 [Info] End correcting iteratively for cns 2..
+2023-01-28 03:39:16 [Info] Start extracting reads for cns.
+2023-01-28 03:39:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_extract.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_011/scripts/cns_extract.sh.log
+2023-01-28 03:43:02 [Info] End extracting reads for cns.
+2023-01-28 03:43:02 [Info] End correcting rawreads.
+2023-01-28 03:43:02 [Info] N50 of corrected reads: 1-consensus/cns_final.fasta.gz
+2023-01-28 03:43:02 [INFO] Start
+2023-01-28 03:43:02 [INFO] Arguments: 
+  cmd = n50
+  ifname = /home/scruz/pipelines/denovo_assembly/VAP_011/1-consensus/cns_final.fasta.gz
+  size = 0
+  block_size = 0
+  base_size = 0
+  ofname = 
+  thread_size = 1
+  names = 
+  min_length = 0
+  genome_size = 0
+  id2name = 
+  discard_illegal_read = 0
+
+2023-01-28 03:43:02 [INFO] Load read file /home/scruz/pipelines/denovo_assembly/VAP_011/1-consensus/cns_final.fasta.gz
+2023-01-28 03:44:18 [INFO] Load 430544 reads from fasta file: /home/scruz/pipelines/denovo_assembly/VAP_011/1-consensus/cns_final.fasta.gz
+2023-01-28 03:44:20 [INFO] End
+[Sat Jan 28 03:44:20 2023]
+Finished job 4.
+5 of 7 steps (71%) done
+Select jobs to execute...
+
+[Sat Jan 28 03:44:20 2023]
+rule run_correction:
+    input: results/VAP_009/correction/config.txt
+    output: results/VAP_009/correction/NECAT
+    log: results/VAP_009/correction/correction.log
+    jobid: 1
+    reason: Missing output files: results/VAP_009/correction/NECAT; Input files updated by another job: results/VAP_009/correction/config.txt
+    wildcards: sample=VAP_009
+    threads: 60
+    resources: tmpdir=/tmp
+
+Smartmatch is experimental at /home/scruz/software/NECAT/Linux-amd64/bin/Plgd/Project.pm line 263.
+2023-01-28 03:44:20 [Info] Start correcting rawreads.
+2023-01-28 03:44:20 [Info] Start filtering reads for consensus.
+2023-01-28 03:44:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_pprr.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_pprr.sh.log
+2023-01-28 03:55:19 [Info] End filtering reads for consensus.
+2023-01-28 03:55:19 [Info] Start correcting iteratively for cns 1..
+2023-01-28 03:55:19 [Info] Start aliging for cns 1.
+2023-01-28 03:55:19 [Info] Start making vol for cns 1.
+2023-01-28 03:55:19 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_mk_vol.sh.log
+2023-01-28 03:57:29 [Info] End making vol for cns 1.
+2023-01-28 03:57:29 [Info] Start aligning vol for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 0 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 1 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 2 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 3 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 4 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 5 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 6 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 7 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 8 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 9 for cns 1.
+2023-01-28 03:57:29 [Info] Parallelly start aligning vol 10 for cns 1.
+2023-01-28 03:57:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_0.sh.log
+2023-01-28 04:16:38 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_1.sh.log
+2023-01-28 04:34:09 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_2.sh.log
+2023-01-28 04:50:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_3.sh.log
+2023-01-28 05:01:51 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_4.sh.log
+2023-01-28 05:12:14 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_5.sh.log
+2023-01-28 05:20:58 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_6.sh.log
+2023-01-28 05:28:45 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_7.sh.log
+2023-01-28 05:35:28 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_8.sh.log
+2023-01-28 05:40:41 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_9.sh.log
+2023-01-28 05:44:55 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_al_vol_10.sh.log
+2023-01-28 05:47:28 [Info] End aligning vol 0 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 1 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 2 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 3 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 4 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 5 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 6 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 7 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 8 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 9 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol 10 for cns 1.
+2023-01-28 05:47:28 [Info] End aligning vol for cns 1.
+2023-01-28 05:47:28 [Info] Start catenating vol for cns 1.
+2023-01-28 05:47:28 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cat_vol.sh.log
+2023-01-28 05:48:17 [Info] End catenating vol for cns 1.
+2023-01-28 05:48:17 [Info] End aliging for cns 1.
+2023-01-28 05:48:17 [Info] Start correcting for cns 1.
+2023-01-28 05:48:17 [Info] Start partitioning candidates.
+2023-01-28 05:48:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_part.sh.log
+2023-01-28 05:49:53 [Info] End partitioning candidates.
+2023-01-28 05:49:53 [Info] Start correcting part for cns 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 0 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 1 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 2 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 3 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 4 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 5 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 6 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 7 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 8 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 9 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 10 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 11 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 12 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 13 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 14 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 15 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 16 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 17 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 18 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 19 for correcting 1.
+2023-01-28 05:49:53 [Info] Parallelly start aligning volumn 20 for correcting 1.
+2023-01-28 05:49:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_0.sh.log
+2023-01-28 05:52:11 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_1.sh.log
+2023-01-28 05:54:30 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_2.sh.log
+2023-01-28 05:56:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_3.sh.log
+2023-01-28 05:59:10 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_4.sh.log
+2023-01-28 06:01:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_5.sh.log
+2023-01-28 06:03:42 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_6.sh.log
+2023-01-28 06:06:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_7.sh.log
+2023-01-28 06:08:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_8.sh.log
+2023-01-28 06:11:04 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_9.sh.log
+2023-01-28 06:14:28 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_10.sh.log
+2023-01-28 06:17:56 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_11.sh.log
+2023-01-28 06:21:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_12.sh.log
+2023-01-28 06:24:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_13.sh.log
+2023-01-28 06:28:13 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_14.sh.log
+2023-01-28 06:31:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_15.sh.log
+2023-01-28 06:35:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_16.sh.log
+2023-01-28 06:38:32 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_17.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_17.sh.log
+2023-01-28 06:41:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_18.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_18.sh.log
+2023-01-28 06:45:28 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_19.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_19.sh.log
+2023-01-28 06:49:01 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_20.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cns_part_20.sh.log
+2023-01-28 06:51:12 [Info] End aligning volumn 0 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 1 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 2 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 3 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 4 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 5 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 6 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 7 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 8 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 9 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 10 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 11 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 12 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 13 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 14 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 15 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 16 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 17 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 18 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 19 for correcting 1.
+2023-01-28 06:51:12 [Info] End aligning volumn 20 for correcting 1.
+2023-01-28 06:51:12 [Info] End correcting part for cns 1.
+2023-01-28 06:51:12 [Info] Start catenating reads for cns 1..
+2023-01-28 06:51:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_cat_cns.sh.log
+2023-01-28 06:51:32 [Info] End catenating reads for cns 1..
+2023-01-28 06:51:32 [Info] Start reordering for cns 1.
+2023-01-28 06:51:32 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_1_reorder.sh.log
+2023-01-28 06:54:37 [Info] End reordering for cns 1.
+2023-01-28 06:54:56 [Info] End correcting for cns 1.
+2023-01-28 06:55:06 [Info] End correcting iteratively for cns 1..
+2023-01-28 06:55:06 [Info] Start correcting iteratively for cns 2..
+2023-01-28 06:55:06 [Info] Start aliging for cns 2.
+2023-01-28 06:55:06 [Info] Start making vol for cns 2.
+2023-01-28 06:55:06 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_mk_vol.sh.log
+2023-01-28 06:57:16 [Info] End making vol for cns 2.
+2023-01-28 06:57:16 [Info] Start aligning vol for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 0 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 1 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 2 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 3 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 4 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 5 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 6 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 7 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 8 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 9 for cns 2.
+2023-01-28 06:57:16 [Info] Parallelly start aligning vol 10 for cns 2.
+2023-01-28 06:57:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_0.sh.log
+2023-01-28 07:07:34 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_1.sh.log
+2023-01-28 07:17:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_2.sh.log
+2023-01-28 07:26:08 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_3.sh.log
+2023-01-28 07:34:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_4.sh.log
+2023-01-28 07:40:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_5.sh.log
+2023-01-28 07:47:07 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_6.sh.log
+2023-01-28 07:52:23 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_7.sh.log
+2023-01-28 07:56:57 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_8.sh.log
+2023-01-28 08:00:47 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_9.sh.log
+2023-01-28 08:04:08 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_al_vol_10.sh.log
+2023-01-28 08:06:41 [Info] End aligning vol 0 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 1 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 2 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 3 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 4 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 5 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 6 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 7 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 8 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 9 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol 10 for cns 2.
+2023-01-28 08:06:41 [Info] End aligning vol for cns 2.
+2023-01-28 08:06:41 [Info] Start catenating vol for cns 2.
+2023-01-28 08:06:41 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cat_vol.sh.log
+2023-01-28 08:07:18 [Info] End catenating vol for cns 2.
+2023-01-28 08:07:18 [Info] End aliging for cns 2.
+2023-01-28 08:07:18 [Info] Start correcting for cns 2.
+2023-01-28 08:07:18 [Info] Start partitioning candidates.
+2023-01-28 08:07:18 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_part.sh.log
+2023-01-28 08:08:44 [Info] End partitioning candidates.
+2023-01-28 08:08:44 [Info] Start correcting part for cns 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 0 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 1 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 2 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 3 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 4 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 5 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 6 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 7 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 8 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 9 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 10 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 11 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 12 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 13 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 14 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 15 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 16 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 17 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 18 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 19 for correcting 2.
+2023-01-28 08:08:44 [Info] Parallelly start aligning volumn 20 for correcting 2.
+2023-01-28 08:08:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_0.sh.log
+2023-01-28 08:11:15 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_1.sh.log
+2023-01-28 08:13:31 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_2.sh.log
+2023-01-28 08:15:51 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_3.sh.log
+2023-01-28 08:18:15 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_4.sh.log
+2023-01-28 08:20:34 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_5.sh.log
+2023-01-28 08:22:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_6.sh.log
+2023-01-28 08:25:14 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_7.sh.log
+2023-01-28 08:27:38 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_8.sh.log
+2023-01-28 08:30:39 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_9.sh.log
+2023-01-28 08:34:15 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_10.sh.log
+2023-01-28 08:37:46 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_11.sh.log
+2023-01-28 08:41:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_12.sh.log
+2023-01-28 08:44:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_13.sh.log
+2023-01-28 08:48:31 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_14.sh.log
+2023-01-28 08:52:09 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_15.sh.log
+2023-01-28 08:55:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_16.sh.log
+2023-01-28 08:59:24 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_17.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_17.sh.log
+2023-01-28 09:03:02 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_18.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_18.sh.log
+2023-01-28 09:06:38 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_19.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_19.sh.log
+2023-01-28 09:10:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_20.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cns_part_20.sh.log
+2023-01-28 09:12:16 [Info] End aligning volumn 0 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 1 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 2 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 3 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 4 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 5 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 6 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 7 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 8 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 9 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 10 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 11 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 12 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 13 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 14 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 15 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 16 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 17 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 18 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 19 for correcting 2.
+2023-01-28 09:12:16 [Info] End aligning volumn 20 for correcting 2.
+2023-01-28 09:12:16 [Info] End correcting part for cns 2.
+2023-01-28 09:12:16 [Info] Start catenating reads for cns 2..
+2023-01-28 09:12:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_cat_cns.sh.log
+2023-01-28 09:12:32 [Info] End catenating reads for cns 2..
+2023-01-28 09:12:32 [Info] Start reordering for cns 2.
+2023-01-28 09:12:32 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_2_reorder.sh.log
+2023-01-28 09:15:35 [Info] End reordering for cns 2.
+2023-01-28 09:15:51 [Info] End correcting for cns 2.
+2023-01-28 09:15:59 [Info] End correcting iteratively for cns 2..
+2023-01-28 09:15:59 [Info] Start extracting reads for cns.
+2023-01-28 09:15:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_extract.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_009/scripts/cns_extract.sh.log
+2023-01-28 09:19:28 [Info] End extracting reads for cns.
+2023-01-28 09:19:28 [Info] End correcting rawreads.
+2023-01-28 09:19:28 [Info] N50 of corrected reads: 1-consensus/cns_final.fasta.gz
+2023-01-28 09:19:28 [INFO] Start
+2023-01-28 09:19:28 [INFO] Arguments: 
+  cmd = n50
+  ifname = /home/scruz/pipelines/denovo_assembly/VAP_009/1-consensus/cns_final.fasta.gz
+  size = 0
+  block_size = 0
+  base_size = 0
+  ofname = 
+  thread_size = 1
+  names = 
+  min_length = 0
+  genome_size = 0
+  id2name = 
+  discard_illegal_read = 0
+
+2023-01-28 09:19:28 [INFO] Load read file /home/scruz/pipelines/denovo_assembly/VAP_009/1-consensus/cns_final.fasta.gz
+2023-01-28 09:20:47 [INFO] Load 1282278 reads from fasta file: /home/scruz/pipelines/denovo_assembly/VAP_009/1-consensus/cns_final.fasta.gz
+2023-01-28 09:20:52 [INFO] End
+[Sat Jan 28 09:20:53 2023]
+Finished job 1.
+6 of 7 steps (86%) done
+Select jobs to execute...
+
+[Sat Jan 28 09:20:53 2023]
+localrule all:
+    input: results/VAP_009/correction/NECAT, results/VAP_011/correction/NECAT
+    jobid: 0
+    reason: Input files updated by another job: results/VAP_011/correction/NECAT, results/VAP_009/correction/NECAT
+    resources: tmpdir=/tmp
+
+[Sat Jan 28 09:20:53 2023]
+Finished job 0.
+7 of 7 steps (100%) done
+Complete log: .snakemake/log/2023-01-27T210150.652152.snakemake.log
+2023-01-27 21:01:50.801480
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+all                         1              1              1
+get_read_list               2              1              1
+produce_necat_config        2             60             60
+run_correction              2             60             60
+total                       7              1             60
+
+Select jobs to execute...
+
+[Mon Jan 30 12:45:06 2023]
+rule get_read_list:
+    input: /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/INB_841.fastq.gz
+    output: results/INB_841/correction/read_list.txt
+    jobid: 12
+    reason: Missing output files: results/INB_841/correction/read_list.txt
+    wildcards: sample=INB_841
+    resources: tmpdir=/tmp
+
+[Mon Jan 30 12:45:06 2023]
+rule get_read_list:
+    input: /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/VAP_005.fastq.gz
+    output: results/VAP_005/correction/read_list.txt
+    jobid: 9
+    reason: Missing output files: results/VAP_005/correction/read_list.txt
+    wildcards: sample=VAP_005
+    resources: tmpdir=/tmp
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+2023-01-30 12:45:06.760012
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 60
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+2023-01-30 12:45:06.784397
+[Mon Jan 30 12:45:07 2023]
+Finished job 12.
+1 of 7 steps (14%) done
+Select jobs to execute...
+[Mon Jan 30 12:45:07 2023]
+Finished job 9.
+2 of 7 steps (29%) done
+
+[Mon Jan 30 12:45:07 2023]
+rule produce_necat_config:
+    input: results/INB_841/correction/read_list.txt
+    output: results/INB_841/correction/config.txt
+    jobid: 11
+    reason: Missing output files: results/INB_841/correction/config.txt; Input files updated by another job: results/INB_841/correction/read_list.txt
+    wildcards: sample=INB_841
+    threads: 60
+    resources: tmpdir=/tmp
+
+[Mon Jan 30 12:45:07 2023]
+Finished job 11.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Mon Jan 30 12:45:07 2023]
+rule run_correction:
+    input: results/INB_841/correction/config.txt
+    output: results/INB_841/correction/NECAT
+    log: results/INB_841/correction/correction.log
+    jobid: 10
+    reason: Missing output files: results/INB_841/correction/NECAT; Input files updated by another job: results/INB_841/correction/config.txt
+    wildcards: sample=INB_841
+    threads: 60
+    resources: tmpdir=/tmp
+
+Smartmatch is experimental at /home/scruz/software/NECAT/Linux-amd64/bin/Plgd/Project.pm line 263.
+2023-01-30 12:45:07 [Info] Start correcting rawreads.
+2023-01-30 12:45:07 [Info] Start filtering reads for consensus.
+2023-01-30 12:45:07 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_pprr.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_pprr.sh.log
+2023-01-30 12:59:53 [Info] End filtering reads for consensus.
+2023-01-30 12:59:53 [Info] Start correcting iteratively for cns 1..
+2023-01-30 12:59:53 [Info] Start aliging for cns 1.
+2023-01-30 12:59:53 [Info] Start making vol for cns 1.
+2023-01-30 12:59:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_mk_vol.sh.log
+2023-01-30 13:02:08 [Info] End making vol for cns 1.
+2023-01-30 13:02:08 [Info] Start aligning vol for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 0 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 1 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 2 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 3 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 4 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 5 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 6 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 7 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 8 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 9 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 10 for cns 1.
+2023-01-30 13:02:08 [Info] Parallelly start aligning vol 11 for cns 1.
+2023-01-30 13:02:08 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_0.sh.log
+2023-01-30 13:20:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_1.sh.log
+2023-01-30 13:36:47 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_2.sh.log
+2023-01-30 13:52:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_3.sh.log
+2023-01-30 14:06:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_4.sh.log
+2023-01-30 14:18:38 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_5.sh.log
+2023-01-30 14:28:33 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_6.sh.log
+2023-01-30 14:37:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_7.sh.log
+2023-01-30 14:44:21 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_8.sh.log
+2023-01-30 14:50:26 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_9.sh.log
+2023-01-30 14:55:40 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_10.sh.log
+2023-01-30 14:58:54 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_al_vol_11.sh.log
+2023-01-30 14:59:54 [Info] End aligning vol 0 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 1 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 2 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 3 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 4 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 5 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 6 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 7 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 8 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 9 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 10 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol 11 for cns 1.
+2023-01-30 14:59:54 [Info] End aligning vol for cns 1.
+2023-01-30 14:59:54 [Info] Start catenating vol for cns 1.
+2023-01-30 14:59:54 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cat_vol.sh.log
+2023-01-30 15:01:00 [Info] End catenating vol for cns 1.
+2023-01-30 15:01:00 [Info] End aliging for cns 1.
+2023-01-30 15:01:00 [Info] Start correcting for cns 1.
+2023-01-30 15:01:00 [Info] Start partitioning candidates.
+2023-01-30 15:01:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_part.sh.log
+2023-01-30 15:03:16 [Info] End partitioning candidates.
+2023-01-30 15:03:16 [Info] Start correcting part for cns 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 0 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 1 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 2 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 3 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 4 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 5 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 6 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 7 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 8 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 9 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 10 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 11 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 12 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 13 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 14 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 15 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 16 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 17 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 18 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 19 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 20 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 21 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 22 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 23 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 24 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 25 for correcting 1.
+2023-01-30 15:03:16 [Info] Parallelly start aligning volumn 26 for correcting 1.
+2023-01-30 15:03:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_0.sh.log
+2023-01-30 15:06:21 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_1.sh.log
+2023-01-30 15:09:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_2.sh.log
+2023-01-30 15:12:13 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_3.sh.log
+2023-01-30 15:15:11 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_4.sh.log
+2023-01-30 15:18:05 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_5.sh.log
+2023-01-30 15:20:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_6.sh.log
+2023-01-30 15:23:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_7.sh.log
+2023-01-30 15:26:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_8.sh.log
+2023-01-30 15:29:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_9.sh.log
+2023-01-30 15:32:40 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_10.sh.log
+2023-01-30 15:35:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_11.sh.log
+2023-01-30 15:38:49 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_12.sh.log
+2023-01-30 15:41:41 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_13.sh.log
+2023-01-30 15:44:30 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_14.sh.log
+2023-01-30 15:47:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_15.sh.log
+2023-01-30 15:50:05 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_16.sh.log
+2023-01-30 15:52:42 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_17.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_17.sh.log
+2023-01-30 15:55:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_18.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_18.sh.log
+2023-01-30 15:58:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_19.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_19.sh.log
+2023-01-30 16:00:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_20.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_20.sh.log
+2023-01-30 16:03:30 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_21.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_21.sh.log
+2023-01-30 16:06:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_22.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_22.sh.log
+2023-01-30 16:09:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_23.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_23.sh.log
+2023-01-30 16:11:46 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_24.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_24.sh.log
+2023-01-30 16:14:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_25.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_25.sh.log
+2023-01-30 16:16:50 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_26.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cns_part_26.sh.log
+2023-01-30 16:18:50 [Info] End aligning volumn 0 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 1 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 2 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 3 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 4 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 5 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 6 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 7 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 8 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 9 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 10 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 11 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 12 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 13 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 14 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 15 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 16 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 17 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 18 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 19 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 20 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 21 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 22 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 23 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 24 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 25 for correcting 1.
+2023-01-30 16:18:50 [Info] End aligning volumn 26 for correcting 1.
+2023-01-30 16:18:50 [Info] End correcting part for cns 1.
+2023-01-30 16:18:50 [Info] Start catenating reads for cns 1..
+2023-01-30 16:18:50 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_cat_cns.sh.log
+2023-01-30 16:19:07 [Info] End catenating reads for cns 1..
+2023-01-30 16:19:07 [Info] Start reordering for cns 1.
+2023-01-30 16:19:07 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_1_reorder.sh.log
+2023-01-30 16:22:24 [Info] End reordering for cns 1.
+2023-01-30 16:22:44 [Info] End correcting for cns 1.
+2023-01-30 16:22:57 [Info] End correcting iteratively for cns 1..
+2023-01-30 16:22:57 [Info] Start correcting iteratively for cns 2..
+2023-01-30 16:22:57 [Info] Start aliging for cns 2.
+2023-01-30 16:22:57 [Info] Start making vol for cns 2.
+2023-01-30 16:22:57 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_mk_vol.sh.log
+2023-01-30 16:25:12 [Info] End making vol for cns 2.
+2023-01-30 16:25:12 [Info] Start aligning vol for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 0 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 1 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 2 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 3 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 4 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 5 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 6 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 7 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 8 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 9 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 10 for cns 2.
+2023-01-30 16:25:12 [Info] Parallelly start aligning vol 11 for cns 2.
+2023-01-30 16:25:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_0.sh.log
+2023-01-30 16:35:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_1.sh.log
+2023-01-30 16:45:04 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_2.sh.log
+2023-01-30 16:53:46 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_3.sh.log
+2023-01-30 17:01:47 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_4.sh.log
+2023-01-30 17:08:45 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_5.sh.log
+2023-01-30 17:15:19 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_6.sh.log
+2023-01-30 17:20:45 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_7.sh.log
+2023-01-30 17:25:33 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_8.sh.log
+2023-01-30 17:29:54 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_9.sh.log
+2023-01-30 17:33:24 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_10.sh.log
+2023-01-30 17:36:14 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_al_vol_11.sh.log
+2023-01-30 17:37:27 [Info] End aligning vol 0 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 1 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 2 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 3 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 4 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 5 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 6 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 7 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 8 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 9 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 10 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol 11 for cns 2.
+2023-01-30 17:37:27 [Info] End aligning vol for cns 2.
+2023-01-30 17:37:27 [Info] Start catenating vol for cns 2.
+2023-01-30 17:37:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cat_vol.sh.log
+2023-01-30 17:38:20 [Info] End catenating vol for cns 2.
+2023-01-30 17:38:20 [Info] End aliging for cns 2.
+2023-01-30 17:38:20 [Info] Start correcting for cns 2.
+2023-01-30 17:38:20 [Info] Start partitioning candidates.
+2023-01-30 17:38:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_part.sh.log
+2023-01-30 17:40:18 [Info] End partitioning candidates.
+2023-01-30 17:40:18 [Info] Start correcting part for cns 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 0 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 1 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 2 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 3 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 4 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 5 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 6 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 7 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 8 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 9 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 10 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 11 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 12 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 13 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 14 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 15 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 16 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 17 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 18 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 19 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 20 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 21 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 22 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 23 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 24 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 25 for correcting 2.
+2023-01-30 17:40:18 [Info] Parallelly start aligning volumn 26 for correcting 2.
+2023-01-30 17:40:18 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_0.sh.log
+2023-01-30 17:43:25 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_1.sh.log
+2023-01-30 17:46:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_2.sh.log
+2023-01-30 17:49:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_3.sh.log
+2023-01-30 17:52:37 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_4.sh.log
+2023-01-30 17:55:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_5.sh.log
+2023-01-30 17:58:37 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_6.sh.log
+2023-01-30 18:01:33 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_7.sh.log
+2023-01-30 18:04:24 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_8.sh.log
+2023-01-30 18:07:26 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_9.sh.log
+2023-01-30 18:10:45 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_10.sh.log
+2023-01-30 18:13:46 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_11.sh.log
+2023-01-30 18:16:46 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_12.sh.log
+2023-01-30 18:19:40 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_13.sh.log
+2023-01-30 18:22:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_14.sh.log
+2023-01-30 18:25:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_15.sh.log
+2023-01-30 18:28:03 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_16.sh.log
+2023-01-30 18:30:31 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_17.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_17.sh.log
+2023-01-30 18:33:02 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_18.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_18.sh.log
+2023-01-30 18:35:37 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_19.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_19.sh.log
+2023-01-30 18:38:11 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_20.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_20.sh.log
+2023-01-30 18:40:49 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_21.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_21.sh.log
+2023-01-30 18:43:40 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_22.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_22.sh.log
+2023-01-30 18:46:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_23.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_23.sh.log
+2023-01-30 18:48:53 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_24.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_24.sh.log
+2023-01-30 18:51:13 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_25.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_25.sh.log
+2023-01-30 18:53:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_26.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cns_part_26.sh.log
+2023-01-30 18:55:20 [Info] End aligning volumn 0 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 1 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 2 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 3 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 4 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 5 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 6 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 7 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 8 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 9 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 10 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 11 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 12 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 13 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 14 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 15 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 16 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 17 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 18 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 19 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 20 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 21 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 22 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 23 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 24 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 25 for correcting 2.
+2023-01-30 18:55:20 [Info] End aligning volumn 26 for correcting 2.
+2023-01-30 18:55:20 [Info] End correcting part for cns 2.
+2023-01-30 18:55:20 [Info] Start catenating reads for cns 2..
+2023-01-30 18:55:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_cat_cns.sh.log
+2023-01-30 18:55:37 [Info] End catenating reads for cns 2..
+2023-01-30 18:55:37 [Info] Start reordering for cns 2.
+2023-01-30 18:55:37 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_2_reorder.sh.log
+2023-01-30 18:58:49 [Info] End reordering for cns 2.
+2023-01-30 18:59:10 [Info] End correcting for cns 2.
+2023-01-30 18:59:20 [Info] End correcting iteratively for cns 2..
+2023-01-30 18:59:20 [Info] Start extracting reads for cns.
+2023-01-30 18:59:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_extract.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/INB_841/scripts/cns_extract.sh.log
+2023-01-30 19:02:54 [Info] End extracting reads for cns.
+2023-01-30 19:02:54 [Info] End correcting rawreads.
+2023-01-30 19:02:54 [Info] N50 of corrected reads: 1-consensus/cns_final.fasta.gz
+2023-01-30 19:02:54 [INFO] Start
+2023-01-30 19:02:54 [INFO] Arguments: 
+  cmd = n50
+  ifname = /home/scruz/pipelines/denovo_assembly/INB_841/1-consensus/cns_final.fasta.gz
+  size = 0
+  block_size = 0
+  base_size = 0
+  ofname = 
+  thread_size = 1
+  names = 
+  min_length = 0
+  genome_size = 0
+  id2name = 
+  discard_illegal_read = 0
+
+2023-01-30 19:02:54 [INFO] Load read file /home/scruz/pipelines/denovo_assembly/INB_841/1-consensus/cns_final.fasta.gz
+2023-01-30 19:04:14 [INFO] Load 1595806 reads from fasta file: /home/scruz/pipelines/denovo_assembly/INB_841/1-consensus/cns_final.fasta.gz
+2023-01-30 19:04:16 [INFO] End
+[Mon Jan 30 19:04:16 2023]
+Finished job 10.
+4 of 7 steps (57%) done
+Select jobs to execute...
+
+[Mon Jan 30 19:04:16 2023]
+rule produce_necat_config:
+    input: results/VAP_005/correction/read_list.txt
+    output: results/VAP_005/correction/config.txt
+    jobid: 8
+    reason: Missing output files: results/VAP_005/correction/config.txt; Input files updated by another job: results/VAP_005/correction/read_list.txt
+    wildcards: sample=VAP_005
+    threads: 60
+    resources: tmpdir=/tmp
+
+[Mon Jan 30 19:04:16 2023]
+Finished job 8.
+5 of 7 steps (71%) done
+Select jobs to execute...
+
+[Mon Jan 30 19:04:16 2023]
+rule run_correction:
+    input: results/VAP_005/correction/config.txt
+    output: results/VAP_005/correction/NECAT
+    log: results/VAP_005/correction/correction.log
+    jobid: 7
+    reason: Missing output files: results/VAP_005/correction/NECAT; Input files updated by another job: results/VAP_005/correction/config.txt
+    wildcards: sample=VAP_005
+    threads: 60
+    resources: tmpdir=/tmp
+
+Smartmatch is experimental at /home/scruz/software/NECAT/Linux-amd64/bin/Plgd/Project.pm line 263.
+2023-01-30 19:04:16 [Info] Start correcting rawreads.
+2023-01-30 19:04:16 [Info] Start filtering reads for consensus.
+2023-01-30 19:04:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_pprr.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_pprr.sh.log
+2023-01-30 19:14:52 [Info] End filtering reads for consensus.
+2023-01-30 19:14:52 [Info] Start correcting iteratively for cns 1..
+2023-01-30 19:14:52 [Info] Start aliging for cns 1.
+2023-01-30 19:14:52 [Info] Start making vol for cns 1.
+2023-01-30 19:14:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_mk_vol.sh.log
+2023-01-30 19:16:35 [Info] End making vol for cns 1.
+2023-01-30 19:16:35 [Info] Start aligning vol for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 0 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 1 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 2 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 3 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 4 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 5 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 6 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 7 for cns 1.
+2023-01-30 19:16:35 [Info] Parallelly start aligning vol 8 for cns 1.
+2023-01-30 19:16:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_0.sh.log
+2023-01-30 19:31:21 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_1.sh.log
+2023-01-30 19:42:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_2.sh.log
+2023-01-30 19:53:17 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_3.sh.log
+2023-01-30 20:03:41 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_4.sh.log
+2023-01-30 20:12:49 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_5.sh.log
+2023-01-30 20:19:48 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_6.sh.log
+2023-01-30 20:25:13 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_7.sh.log
+2023-01-30 20:29:24 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_al_vol_8.sh.log
+2023-01-30 20:31:01 [Info] End aligning vol 0 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 1 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 2 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 3 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 4 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 5 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 6 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 7 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol 8 for cns 1.
+2023-01-30 20:31:01 [Info] End aligning vol for cns 1.
+2023-01-30 20:31:01 [Info] Start catenating vol for cns 1.
+2023-01-30 20:31:01 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cat_vol.sh.log
+2023-01-30 20:31:27 [Info] End catenating vol for cns 1.
+2023-01-30 20:31:27 [Info] End aliging for cns 1.
+2023-01-30 20:31:27 [Info] Start correcting for cns 1.
+2023-01-30 20:31:27 [Info] Start partitioning candidates.
+2023-01-30 20:31:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_part.sh.log
+2023-01-30 20:32:29 [Info] End partitioning candidates.
+2023-01-30 20:32:29 [Info] Start correcting part for cns 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 0 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 1 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 2 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 3 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 4 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 5 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 6 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 7 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 8 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 9 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 10 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 11 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 12 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 13 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 14 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 15 for correcting 1.
+2023-01-30 20:32:29 [Info] Parallelly start aligning volumn 16 for correcting 1.
+2023-01-30 20:32:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_0.sh.log
+2023-01-30 20:34:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_1.sh.log
+2023-01-30 20:35:51 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_2.sh.log
+2023-01-30 20:37:30 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_3.sh.log
+2023-01-30 20:39:16 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_4.sh.log
+2023-01-30 20:41:13 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_5.sh.log
+2023-01-30 20:43:10 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_6.sh.log
+2023-01-30 20:45:44 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_7.sh.log
+2023-01-30 20:48:26 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_8.sh.log
+2023-01-30 20:51:26 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_9.sh.log
+2023-01-30 20:54:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_10.sh.log
+2023-01-30 20:57:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_11.sh.log
+2023-01-30 21:00:45 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_12.sh.log
+2023-01-30 21:03:57 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_13.sh.log
+2023-01-30 21:07:10 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_14.sh.log
+2023-01-30 21:10:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_15.sh.log
+2023-01-30 21:13:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cns_part_16.sh.log
+2023-01-30 21:15:09 [Info] End aligning volumn 0 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 1 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 2 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 3 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 4 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 5 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 6 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 7 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 8 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 9 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 10 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 11 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 12 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 13 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 14 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 15 for correcting 1.
+2023-01-30 21:15:09 [Info] End aligning volumn 16 for correcting 1.
+2023-01-30 21:15:09 [Info] End correcting part for cns 1.
+2023-01-30 21:15:09 [Info] Start catenating reads for cns 1..
+2023-01-30 21:15:09 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_cat_cns.sh.log
+2023-01-30 21:15:22 [Info] End catenating reads for cns 1..
+2023-01-30 21:15:22 [Info] Start reordering for cns 1.
+2023-01-30 21:15:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_1_reorder.sh.log
+2023-01-30 21:17:48 [Info] End reordering for cns 1.
+2023-01-30 21:18:01 [Info] End correcting for cns 1.
+2023-01-30 21:18:07 [Info] End correcting iteratively for cns 1..
+2023-01-30 21:18:07 [Info] Start correcting iteratively for cns 2..
+2023-01-30 21:18:07 [Info] Start aliging for cns 2.
+2023-01-30 21:18:07 [Info] Start making vol for cns 2.
+2023-01-30 21:18:07 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_mk_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_mk_vol.sh.log
+2023-01-30 21:19:48 [Info] End making vol for cns 2.
+2023-01-30 21:19:48 [Info] Start aligning vol for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 0 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 1 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 2 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 3 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 4 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 5 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 6 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 7 for cns 2.
+2023-01-30 21:19:48 [Info] Parallelly start aligning vol 8 for cns 2.
+2023-01-30 21:19:48 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_0.sh.log
+2023-01-30 21:28:21 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_1.sh.log
+2023-01-30 21:35:51 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_2.sh.log
+2023-01-30 21:42:52 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_3.sh.log
+2023-01-30 21:49:27 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_4.sh.log
+2023-01-30 21:55:20 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_5.sh.log
+2023-01-30 22:00:22 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_6.sh.log
+2023-01-30 22:04:43 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_7.sh.log
+2023-01-30 22:07:50 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_al_vol_8.sh.log
+2023-01-30 22:09:29 [Info] End aligning vol 0 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 1 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 2 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 3 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 4 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 5 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 6 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 7 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol 8 for cns 2.
+2023-01-30 22:09:29 [Info] End aligning vol for cns 2.
+2023-01-30 22:09:29 [Info] Start catenating vol for cns 2.
+2023-01-30 22:09:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cat_vol.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cat_vol.sh.log
+2023-01-30 22:09:54 [Info] End catenating vol for cns 2.
+2023-01-30 22:09:54 [Info] End aliging for cns 2.
+2023-01-30 22:09:54 [Info] Start correcting for cns 2.
+2023-01-30 22:09:54 [Info] Start partitioning candidates.
+2023-01-30 22:09:54 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_part.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_part.sh.log
+2023-01-30 22:10:47 [Info] End partitioning candidates.
+2023-01-30 22:10:47 [Info] Start correcting part for cns 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 0 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 1 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 2 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 3 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 4 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 5 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 6 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 7 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 8 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 9 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 10 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 11 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 12 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 13 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 14 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 15 for correcting 2.
+2023-01-30 22:10:47 [Info] Parallelly start aligning volumn 16 for correcting 2.
+2023-01-30 22:10:47 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_0.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_0.sh.log
+2023-01-30 22:12:31 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_1.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_1.sh.log
+2023-01-30 22:14:10 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_2.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_2.sh.log
+2023-01-30 22:15:47 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_3.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_3.sh.log
+2023-01-30 22:17:35 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_4.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_4.sh.log
+2023-01-30 22:19:31 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_5.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_5.sh.log
+2023-01-30 22:21:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_6.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_6.sh.log
+2023-01-30 22:24:15 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_7.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_7.sh.log
+2023-01-30 22:27:12 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_8.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_8.sh.log
+2023-01-30 22:30:29 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_9.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_9.sh.log
+2023-01-30 22:33:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_10.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_10.sh.log
+2023-01-30 22:37:25 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_11.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_11.sh.log
+2023-01-30 22:40:59 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_12.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_12.sh.log
+2023-01-30 22:44:43 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_13.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_13.sh.log
+2023-01-30 22:48:26 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_14.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_14.sh.log
+2023-01-30 22:52:00 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_15.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_15.sh.log
+2023-01-30 22:55:36 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_16.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cns_part_16.sh.log
+2023-01-30 22:57:19 [Info] End aligning volumn 0 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 1 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 2 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 3 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 4 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 5 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 6 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 7 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 8 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 9 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 10 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 11 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 12 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 13 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 14 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 15 for correcting 2.
+2023-01-30 22:57:19 [Info] End aligning volumn 16 for correcting 2.
+2023-01-30 22:57:19 [Info] End correcting part for cns 2.
+2023-01-30 22:57:19 [Info] Start catenating reads for cns 2..
+2023-01-30 22:57:19 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cat_cns.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_cat_cns.sh.log
+2023-01-30 22:57:33 [Info] End catenating reads for cns 2..
+2023-01-30 22:57:33 [Info] Start reordering for cns 2.
+2023-01-30 22:57:33 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_reorder.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_2_reorder.sh.log
+2023-01-30 22:59:54 [Info] End reordering for cns 2.
+2023-01-30 23:00:06 [Info] End correcting for cns 2.
+2023-01-30 23:00:11 [Info] End correcting iteratively for cns 2..
+2023-01-30 23:00:11 [Info] Start extracting reads for cns.
+2023-01-30 23:00:11 [Info] Run script: /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_extract.sh 2>&1 |tee /home/scruz/pipelines/denovo_assembly/VAP_005/scripts/cns_extract.sh.log
+2023-01-30 23:02:59 [Info] End extracting reads for cns.
+2023-01-30 23:02:59 [Info] End correcting rawreads.
+2023-01-30 23:02:59 [Info] N50 of corrected reads: 1-consensus/cns_final.fasta.gz
+2023-01-30 23:02:59 [INFO] Start
+2023-01-30 23:02:59 [INFO] Arguments: 
+  cmd = n50
+  ifname = /home/scruz/pipelines/denovo_assembly/VAP_005/1-consensus/cns_final.fasta.gz
+  size = 0
+  block_size = 0
+  base_size = 0
+  ofname = 
+  thread_size = 1
+  names = 
+  min_length = 0
+  genome_size = 0
+  id2name = 
+  discard_illegal_read = 0
+
+2023-01-30 23:02:59 [INFO] Load read file /home/scruz/pipelines/denovo_assembly/VAP_005/1-consensus/cns_final.fasta.gz
+2023-01-30 23:04:11 [INFO] Load 1533541 reads from fasta file: /home/scruz/pipelines/denovo_assembly/VAP_005/1-consensus/cns_final.fasta.gz
+2023-01-30 23:04:13 [INFO] End
+[Mon Jan 30 23:04:13 2023]
+Finished job 7.
+6 of 7 steps (86%) done
+Select jobs to execute...
+
+[Mon Jan 30 23:04:13 2023]
+localrule all:
+    input: results/VAP_009/correction/NECAT, results/VAP_011/correction/NECAT, results/VAP_005/correction/NECAT, results/INB_841/correction/NECAT
+    jobid: 0
+    reason: Input files updated by another job: results/VAP_005/correction/NECAT, results/INB_841/correction/NECAT
+    resources: tmpdir=/tmp
+
+[Mon Jan 30 23:04:13 2023]
+Finished job 0.
+7 of 7 steps (100%) done
+Complete log: .snakemake/log/2023-01-30T124506.009355.snakemake.log
+2023-01-30 12:45:06.156857

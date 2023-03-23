@@ -1,2 +1,11 @@
-canu_threads: 60
-genome_size: 590m
+sample_units: config/sample_units.txt
+
+resources_config: config/resources.yaml
+
+organism:
+  genome_size: 590000000
+
+correction:
+  NECAT_path: /home/scruz/software/NECAT/Linux-amd64/bin/necat.pl  
+  min_read_l: 3000
+
