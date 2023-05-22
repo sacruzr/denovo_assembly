@@ -1,5 +1,3 @@
 sample_name	read_file_path
-VAP_009	resources/sequences/VAP_009.fastq.gz
-VAP_011	resources/sequences/VAP_011.fastq.gz
-VAP_005	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/VAP_005.fastq.gz
-INB_841	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/sequences/guppy/merged/INB_841.fastq.gz
+G10474	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10474/correction/NECAT/1-consensus/cns_final.fasta.gz
+G10909	/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10909/correction/NECAT/1-consensus/cns_final.fasta.gz

@@ -2,7 +2,7 @@ import os, sys
 
 rule canu_denovo_assembly:
     input:
-        corrected_reads = "results/{sample}/correction/NECAT/1-consensus/cns_final.fasta.gz"
+        corrected_reads = get_corrected_reads
     
     output:
         directory('results/{sample}/assembly/canu')

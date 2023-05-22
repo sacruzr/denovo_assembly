@@ -1,0 +1,1371 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 85
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+all                         1              1              1
+canu_denovo_assembly        2             80             80
+total                       3              1             80
+
+Select jobs to execute...
+
+[Tue Apr 18 14:40:46 2023]
+rule canu_denovo_assembly:
+    input: /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10474/NECAT/1-consensus/cns_final.fasta.gz
+    output: results/G10474/assembly/canu
+    log: results/G10474/assembly/canu.log
+    jobid: 1
+    reason: Missing output files: results/G10474/assembly/canu
+    wildcards: sample=G10474
+    threads: 80
+    resources: tmpdir=/tmp
+
+Activating conda environment: denovo_assembly_pipeline
+-- canu 2.2
+--
+-- CITATIONS
+--
+-- For 'standard' assemblies of PacBio or Nanopore reads:
+--   Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+--   Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+--   Genome Res. 2017 May;27(5):722-736.
+--   http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction and consensus use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+-- Overlaps are generated using:
+--   Berlin K, et al.
+--   Assembling large genomes with single-molecule sequencing and locality-sensitive hashing.
+--   Nat Biotechnol. 2015 Jun;33(6):623-30.
+--   http://doi.org/10.1038/nbt.3238
+-- 
+--   Myers EW, et al.
+--   A Whole-Genome Assembly of Drosophila.
+--   Science. 2000 Mar 24;287(5461):2196-204.
+--   http://doi.org/10.1126/science.287.5461.2196
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected Java(TM) Runtime Environment '17.0.3-internal' (from '/home/scruz/.conda/envs/denovo_assembly_pipeline/lib/jvm/bin/java') without -d64 support.
+-- Detected gnuplot version '5.4 patchlevel 5   ' (from 'gnuplot') and image format 'png'.
+--
+-- Detected 80 CPUs and 504 gigabytes of memory on the local machine.
+--
+-- Local machine mode enabled; grid support not detected or not allowed.
+--
+-- Job limits:
+--     80 CPUs              (maxThreads option).
+--
+--                                (tag)Concurrency
+--                         (tag)Threads          |
+--                (tag)Memory         |          |
+--        (tag)             |         |          |       total usage      algorithm
+--        -------  ----------  --------   --------  --------------------  -----------------------------
+-- Local: meryl     24.000 GB    8 CPUs x  10 jobs   240.000 GB  80 CPUs  (k-mer counting)
+-- Local: hap       12.000 GB   20 CPUs x   4 jobs    48.000 GB  80 CPUs  (read-to-haplotype assignment)
+-- Local: cormhap   32.000 GB   16 CPUs x   5 jobs   160.000 GB  80 CPUs  (overlap detection with mhap)
+-- Local: obtovl    16.000 GB   16 CPUs x   5 jobs    80.000 GB  80 CPUs  (overlap detection)
+-- Local: utgovl    16.000 GB   16 CPUs x   5 jobs    80.000 GB  80 CPUs  (overlap detection)
+-- Local: cor        -.--- GB    4 CPUs x   - jobs     -.--- GB   - CPUs  (read correction)
+-- Local: ovb        4.000 GB    1 CPU  x  80 jobs   320.000 GB  80 CPUs  (overlap store bucketizer)
+-- Local: ovs       16.000 GB    1 CPU  x  31 jobs   496.000 GB  31 CPUs  (overlap store sorting)
+-- Local: red       32.000 GB    8 CPUs x  10 jobs   320.000 GB  80 CPUs  (read error detection)
+-- Local: oea        8.000 GB    1 CPU  x  63 jobs   504.000 GB  63 CPUs  (overlap error adjustment)
+-- Local: bat      256.000 GB   16 CPUs x   1 job    256.000 GB  16 CPUs  (contig construction with bogart)
+-- Local: cns        -.--- GB    8 CPUs x   - jobs     -.--- GB   - CPUs  (consensus)
+--
+-- Found untrimmed corrected Nanopore reads in the input files.
+--
+-- Generating assembly 'G10474' in '/home/scruz/pipelines/denovo_assembly/results/G10474/assembly/canu':
+--   genomeSize:
+--     590000000
+--
+--   Overlap Generation Limits:
+--     corOvlErrorRate 0.3200 ( 32.00%)
+--     obtOvlErrorRate 0.1200 ( 12.00%)
+--     utgOvlErrorRate 0.1200 ( 12.00%)
+--
+--   Overlap Processing Limits:
+--     corErrorRate    0.3000 ( 30.00%)
+--     obtErrorRate    0.1200 ( 12.00%)
+--     utgErrorRate    0.1200 ( 12.00%)
+--     cnsErrorRate    0.2000 ( 20.00%)
+--
+--   Stages to run:
+--     trim corrected reads.
+--     assemble corrected and trimmed reads.
+--
+--
+-- Correction skipped; not enabled.
+--
+-- BEGIN TRIMMING
+----------------------------------------
+-- Starting command on Tue Apr 18 14:40:48 2023 with 662.816 GB free disk space
+
+    cd .
+    ./G10474.seqStore.sh \
+    > ./G10474.seqStore.err 2>&1
+
+-- Finished on Tue Apr 18 14:43:40 2023 (172 seconds) with 657.38 GB free disk space
+----------------------------------------
+--
+-- In sequence store './G10474.seqStore':
+--   Found 544087 reads.
+--   Found 17700092005 bases (30 times coverage).
+--    Histogram of corrected reads:
+--    
+--    G=17700092005                      sum of  ||               length     num
+--    NG         length     index       lengths  ||                range    seqs
+--    ----- ------------ --------- ------------  ||  ------------------- -------
+--    00010        58557     25573   1770053358  ||      19584-22918      122364|---------------------------------------------------------------
+--    00020        48495     59058   3540051804  ||      22919-26253       93276|-------------------------------------------------
+--    00030        42062     98375   5310067205  ||      26254-29588       73045|--------------------------------------
+--    00040        37205    143195   7080053477  ||      29589-32923       56976|------------------------------
+--    00050        33257    193571   8850073479  ||      32924-36258       44375|-----------------------
+--    00060        29879    249761  10620071775  ||      36259-39593       34854|------------------
+--    00070        26933    312183  12390086931  ||      39594-42928       27287|---------------
+--    00080        24243    381474  14160096430  ||      42929-46263       21386|------------
+--    00090        21818    458444  15930097057  ||      46264-49598       16491|---------
+--    00100        19584    544086  17700092005  ||      49599-52933       13060|-------
+--    001.000x              544087  17700092005  ||      52934-56268        9947|------
+--                                               ||      56269-59603        7642|----
+--                                               ||      59604-62938        6018|----
+--                                               ||      62939-66273        4572|---
+--                                               ||      66274-69608        3453|--
+--                                               ||      69609-72943        2565|--
+--                                               ||      72944-76278        1884|-
+--                                               ||      76279-79613        1457|-
+--                                               ||      79614-82948         939|-
+--                                               ||      82949-86283         732|-
+--                                               ||      86284-89618         503|-
+--                                               ||      89619-92953         393|-
+--                                               ||      92954-96288         269|-
+--                                               ||      96289-99623         178|-
+--                                               ||      99624-102958        145|-
+--                                               ||     102959-106293         97|-
+--                                               ||     106294-109628         61|-
+--                                               ||     109629-112963         37|-
+--                                               ||     112964-116298         32|-
+--                                               ||     116299-119633         14|-
+--                                               ||     119634-122968         11|-
+--                                               ||     122969-126303          4|-
+--                                               ||     126304-129638          8|-
+--                                               ||     129639-132973          3|-
+--                                               ||     132974-136308          0|
+--                                               ||     136309-139643          2|-
+--                                               ||     139644-142978          1|-
+--                                               ||     142979-146313          1|-
+--                                               ||     146314-149648          1|-
+--                                               ||     149649-152983          1|-
+--                                               ||     152984-156318          0|
+--                                               ||     156319-159653          1|-
+--                                               ||     159654-162988          0|
+--                                               ||     162989-166323          0|
+--                                               ||     166324-169658          0|
+--                                               ||     169659-172993          0|
+--                                               ||     172994-176328          1|-
+--                                               ||     176329-179663          0|
+--                                               ||     179664-182998          0|
+--                                               ||     182999-186333          1|-
+--    
+----------------------------------------
+-- Starting command on Tue Apr 18 14:43:41 2023 with 657.352 GB free disk space
+
+    cd trimming/0-mercounts
+    ./meryl-configure.sh \
+    > ./meryl-configure.err 2>&1
+
+-- Finished on Tue Apr 18 14:43:42 2023 (one second) with 657.336 GB free disk space
+----------------------------------------
+--  segments   memory batches
+--  -------- -------- -------
+--        01 18.82 GB       4
+--        02 14.42 GB       3
+--        04 14.42 GB       2
+--        06  9.81 GB       2
+--        08  7.46 GB       2
+--        12  5.25 GB       2
+--        16  3.86 GB       2
+--        20  3.32 GB       2
+--        24  2.72 GB       2
+--        32  2.20 GB       2
+--        40  1.76 GB       2
+--        48  1.47 GB       2
+--        56  1.26 GB       2
+--        64  1.10 GB       2
+--        96  0.73 GB       2
+--
+--  For 544087 reads with 17700092005 bases, limit to 177 batches.
+--  Will count kmers using 04 jobs, each using 16 GB and 8 threads.
+--
+-- Finished stage 'merylConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Tue Apr 18 14:43:42 2023 with 657.336 GB free disk space (4 processes; 10 concurrently)
+
+    cd trimming/0-mercounts
+    ./meryl-count.sh 1 > ./meryl-count.000001.out 2>&1
+    ./meryl-count.sh 2 > ./meryl-count.000002.out 2>&1
+    ./meryl-count.sh 3 > ./meryl-count.000003.out 2>&1
+    ./meryl-count.sh 4 > ./meryl-count.000004.out 2>&1
+
+-- Finished on Tue Apr 18 14:48:05 2023 (263 seconds) with 649.469 GB free disk space
+----------------------------------------
+-- Found 4 Kmer counting (meryl) outputs.
+-- Finished stage 'obt-merylCountCheck', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Tue Apr 18 14:48:05 2023 with 649.469 GB free disk space (1 processes; 10 concurrently)
+
+    cd trimming/0-mercounts
+    ./meryl-process.sh 1 > ./meryl-process.000001.out 2>&1
+
+-- Finished on Tue Apr 18 14:48:20 2023 (15 seconds) with 655.825 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.  Kmer frequency histogram:
+--
+--  22-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1         0                                                                        0.0000 0.0000
+--       2-     2   6362016 ***                                                                    0.0177 0.0007
+--       3-     4   3126223 *                                                                      0.0235 0.0011
+--       5-     7   1487672                                                                        0.0283 0.0015
+--       8-    11   1148900                                                                        0.0314 0.0019
+--      12-    16   6802422 ***                                                                    0.0353 0.0028
+--      17-    22  54110428 ***************************                                            0.0634 0.0118
+--      23-    29 139484718 ********************************************************************** 0.2514 0.0927
+--      30-    37  97342516 ************************************************                       0.6439 0.3085
+--      38-    46  18757315 *********                                                              0.8765 0.4678
+--      47-    56   6962521 ***                                                                    0.9170 0.5020
+--      57-    67   6357399 ***                                                                    0.9366 0.5231
+--      68-    79   2959654 *                                                                      0.9532 0.5442
+--      80-    92   2563136 *                                                                      0.9611 0.5560
+--      93-   106   1773509                                                                        0.9681 0.5684
+--     107-   121   1462808                                                                        0.9729 0.5782
+--     122-   137   1122212                                                                        0.9769 0.5875
+--     138-   154    939400                                                                        0.9799 0.5957
+--     155-   172    722778                                                                        0.9825 0.6034
+--     173-   191    594442                                                                        0.9845 0.6100
+--     192-   211    497856                                                                        0.9861 0.6161
+--     212-   232    419546                                                                        0.9875 0.6217
+--     233-   254    360289                                                                        0.9887 0.6270
+--     255-   277    308081                                                                        0.9897 0.6319
+--     278-   301    261824                                                                        0.9905 0.6365
+--     302-   326    238546                                                                        0.9912 0.6408
+--     327-   352    209710                                                                        0.9919 0.6451
+--     353-   379    184515                                                                        0.9925 0.6491
+--     380-   407    166440                                                                        0.9930 0.6529
+--     408-   436    148065                                                                        0.9934 0.6566
+--     437-   466    133755                                                                        0.9939 0.6601
+--     467-   497    122311                                                                        0.9942 0.6635
+--     498-   529    110590                                                                        0.9946 0.6669
+--     530-   562    100556                                                                        0.9949 0.6701
+--     563-   596     90445                                                                        0.9952 0.6732
+--     597-   631     83159                                                                        0.9954 0.6762
+--     632-   667     75425                                                                        0.9956 0.6791
+--     668-   704     70170                                                                        0.9958 0.6818
+--     705-   742     63400                                                                        0.9960 0.6846
+--     743-   781     59829                                                                        0.9962 0.6872
+--     782-   821     54889                                                                        0.9964 0.6897
+--
+--           0 (max occurrences)
+-- 17624119948 (total mers, non-unique)
+--   359085111 (distinct mers, non-unique)
+--           0 (unique mers)
+-- Finished stage 'meryl-process', reset canuIteration.
+--
+-- Removing meryl database 'trimming/0-mercounts/G10474.ms22'.
+--
+-- OVERLAPPER (normal) (trimming) erate=0.12
+--
+----------------------------------------
+-- Starting command on Tue Apr 18 14:48:20 2023 with 657.855 GB free disk space
+
+    cd trimming/1-overlapper
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/overlapInCorePartition \
+     -S  ../../G10474.seqStore \
+     -hl 320000000 \
+     -rl 15000000000 \
+     -ol 500 \
+     -o  ./G10474.partition \
+    > ./G10474.partition.err 2>&1
+
+-- Finished on Tue Apr 18 14:48:20 2023 (fast as lightning) with 657.855 GB free disk space
+----------------------------------------
+--
+-- Configured 66 overlapInCore jobs.
+-- Finished stage 'obt-overlapConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'obtovl' concurrent execution on Tue Apr 18 14:48:20 2023 with 657.855 GB free disk space (66 processes; 5 concurrently)
+
+    cd trimming/1-overlapper
+    ./overlap.sh 1 > ./overlap.000001.out 2>&1
+    ./overlap.sh 2 > ./overlap.000002.out 2>&1
+    ./overlap.sh 3 > ./overlap.000003.out 2>&1
+    ./overlap.sh 4 > ./overlap.000004.out 2>&1
+    ./overlap.sh 5 > ./overlap.000005.out 2>&1
+    ./overlap.sh 6 > ./overlap.000006.out 2>&1
+    ./overlap.sh 7 > ./overlap.000007.out 2>&1
+    ./overlap.sh 8 > ./overlap.000008.out 2>&1
+    ./overlap.sh 9 > ./overlap.000009.out 2>&1
+    ./overlap.sh 10 > ./overlap.000010.out 2>&1
+    ./overlap.sh 11 > ./overlap.000011.out 2>&1
+    ./overlap.sh 12 > ./overlap.000012.out 2>&1
+    ./overlap.sh 13 > ./overlap.000013.out 2>&1
+    ./overlap.sh 14 > ./overlap.000014.out 2>&1
+    ./overlap.sh 15 > ./overlap.000015.out 2>&1
+    ./overlap.sh 16 > ./overlap.000016.out 2>&1
+    ./overlap.sh 17 > ./overlap.000017.out 2>&1
+    ./overlap.sh 18 > ./overlap.000018.out 2>&1
+    ./overlap.sh 19 > ./overlap.000019.out 2>&1
+    ./overlap.sh 20 > ./overlap.000020.out 2>&1
+    ./overlap.sh 21 > ./overlap.000021.out 2>&1
+    ./overlap.sh 22 > ./overlap.000022.out 2>&1
+    ./overlap.sh 23 > ./overlap.000023.out 2>&1
+    ./overlap.sh 24 > ./overlap.000024.out 2>&1
+    ./overlap.sh 25 > ./overlap.000025.out 2>&1
+    ./overlap.sh 26 > ./overlap.000026.out 2>&1
+    ./overlap.sh 27 > ./overlap.000027.out 2>&1
+    ./overlap.sh 28 > ./overlap.000028.out 2>&1
+    ./overlap.sh 29 > ./overlap.000029.out 2>&1
+    ./overlap.sh 30 > ./overlap.000030.out 2>&1
+    ./overlap.sh 31 > ./overlap.000031.out 2>&1
+    ./overlap.sh 32 > ./overlap.000032.out 2>&1
+    ./overlap.sh 33 > ./overlap.000033.out 2>&1
+    ./overlap.sh 34 > ./overlap.000034.out 2>&1
+    ./overlap.sh 35 > ./overlap.000035.out 2>&1
+    ./overlap.sh 36 > ./overlap.000036.out 2>&1
+    ./overlap.sh 37 > ./overlap.000037.out 2>&1
+    ./overlap.sh 38 > ./overlap.000038.out 2>&1
+   --
+-- Running jobs.  Second attempt out of 2.
+----------------------------------------
+-- Starting 'obtovl' concurrent execution on 
+    cd trimming/1-overlapper
+    ./overlap.sh 29 > ./overlap.000029.out 2>&1
+    ./overlap.sh 30 > ./overlap.000030.out 2>&1
+    ./overlap.sh 31 > ./overlap.000031.out 2>&1
+    ./overlap.sh 32 > ./overlap.000032.out 2>&1
+    ./overlap.sh 33 > ./overlap.000033.out 2>&1
+    ./overlap.sh 34 > ./overlap.000034.out 2>&1
+    ./overlap.sh 35 > ./overlap.000035.out 2>&1
+    ./overlap.sh 36 > ./overlap.000036.out 2>&1
+    ./overlap.sh 37 > ./overlap.000037.out 2>&1
+    ./overlap.sh 38 > ./overlap.000038.out 2>&1
+    ./overlap.sh 39 > ./overlap.000039.out 2>&1
+    ./overlap.sh 40 > ./overlap.000040.out 2>&1
+    ./overlap.sh 41 > ./overlap.000041.out 2>&1
+    ./overlap.sh 42 > ./overlap.000042.out 2>&1
+    ./overlap.sh 43 > ./overlap.000043.out 2>&1
+    ./overlap.sh 44 > ./overlap.000044.out 2>&1
+    ./overlap.sh 45 > ./overlap.000045.out 2>&1
+    ./overlap.sh 46 > ./overlap.000046.out 2>&1
+    ./overlap.sh 47 > ./overlap.000047.out 2>&1
+    ./overlap.sh 48 > ./overlap.000048.out 2>&1
+    ./overlap.sh 49 > ./overlap.000049.out 2>&1
+    ./overlap.sh 50 > ./overlap.000050.out 2>&1
+    ./overlap.sh 51 > ./overlap.000051.out 2>&1
+    ./overlap.sh 52 > ./overlap.000052.out 2>&1
+    ./overlap.sh 53 > ./overlap.000053.out 2>&1
+    ./overlap.sh 54 > ./overlap.000054.out 2>&1
+    ./overlap.sh 55 > ./overlap.000055.out 2>&1
+    ./overlap.sh 56 > ./overlap.000056.out 2>&1
+    ./overlap.sh 57 > ./overlap.000057.out 2>&1
+    ./overlap.sh 58 > ./overlap.000058.out 2>&1
+    ./overlap.sh 59 > ./overlap.000059.out 2>&1
+    ./overlap.sh 60 > ./overlap.000060.out 2>&1
+    ./overlap.sh 61 > ./overlap.000061.out 2>&1
+    ./overlap.sh 62 > ./overlap.000062.out 2>&1
+    ./overlap.sh 63 > ./overlap.000063.out 2>&1
+    ./overlap.sh 64 > ./overlap.000064.out 2>&1
+    ./overlap.sh 65 > ./overlap.000065.out 2>&1
+    ./overlap.sh 66 > ./overlap.000066.out 2>&1
+
+-- Finished on ----------------------------------------
+--
+-- Overlap jobs failed, tried 2 times, giving up.
+--   job trimming/1-overlapper/001/000029.ovb FAILED.
+--   job trimming/1-overlapper/001/000030.ovb FAILED.
+--   job trimming/1-overlapper/001/000031.ovb FAILED.
+--   job trimming/1-overlapper/001/000032.ovb FAILED.
+--   job trimming/1-overlapper/001/000033.ovb FAILED.
+--   job trimming/1-overlapper/001/000034.ovb FAILED.
+--   job trimming/1-overlapper/001/000035.ovb FAILED.
+--   job trimming/1-overlapper/001/000036.ovb FAILED.
+--   job trimming/1-overlapper/001/000037.ovb FAILED.
+--   job trimming/1-overlapper/001/000038.ovb FAILED.
+--   job trimming/1-overlapper/001/000039.ovb FAILED.
+--   job trimming/1-overlapper/001/000040.ovb FAILED.
+--   job trimming/1-overlapper/001/000041.ovb FAILED.
+--   job trimming/1-overlapper/001/000042.ovb FAILED.
+--   job trimming/1-overlapper/001/000043.ovb FAILED.
+--   job trimming/1-overlapper/001/000044.ovb FAILED.
+--   job trimming/1-overlapper/001/000045.ovb FAILED.
+--   job trimming/1-overlapper/001/000046.ovb FAILED.
+--   job trimming/1-overlapper/001/000047.ovb FAILED.
+--   job trimming/1-overlapper/001/000048.ovb FAILED.
+--   job trimming/1-overlapper/001/000049.ovb FAILED.
+--   job trimming/1-overlapper/001/000050.ovb FAILED.
+--   job trimming/1-overlapper/001/000051.ovb FAILED.
+--   job trimming/1-overlapper/001/000052.ovb FAILED.
+--   job trimming/1-overlapper/001/000053.ovb FAILED.
+--   job trimming/1-overlapper/001/000054.ovb FAILED.
+--   job trimming/1-overlapper/001/000055.ovb FAILED.
+--   job trimming/1-overlapper/001/000056.ovb FAILED.
+--   job trimming/1-overlapper/001/000057.ovb FAILED.
+--   job trimming/1-overlapper/001/000058.ovb FAILED.
+--   job trimming/1-overlapper/001/000059.ovb FAILED.
+--   job trimming/1-overlapper/001/000060.ovb FAILED.
+--   job trimming/1-overlapper/001/000061.ovb FAILED.
+--   job trimming/1-overlapper/001/000062.ovb FAILED.
+--   job trimming/1-overlapper/001/000063.ovb FAILED.
+--   job trimming/1-overlapper/001/000064.ovb FAILED.
+--   job trimming/1-overlapper/001/000065.ovb FAILED.
+--[Thu Apr 20 15:18:11 2023]
+--- Logging error ---
+Error in rule canu_denovo_assembly:
+    jobid: 1
+    input: /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10474/NECAT/1-consensus/cns_final.fasta.gz
+    output: results/G10474/assembly/canu
+    log: results/G10474/assembly/canu.log (check log file(s) for error details)
+    conda-env: denovo_assembly_pipeline
+    shell:
+        
+        canu -trim-assemble         -p G10474         -d results/G10474/assembly/canu         genomeSize=590m         useGrid=false         maxThreads=80         -corrected -nanopore /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10474/NECAT/1-consensus/cns_final.fasta.gz 1> results/G10474/assembly/canu.log
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+--- Logging error ---
+Removing output files of failed job canu_denovo_assembly since they might be corrupted:
+results/G10474/assembly/canu--- Logging error ---
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-04-18T144045.902430.snakemake.log
+2023-04-18 14:40:46.053193
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 85
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count    min threads    max threads
+--------------------  -------  -------------  -------------
+all                         1              1              1
+canu_denovo_assembly        2             80             80
+total                       3              1             80
+
+Select jobs to execute...
+
+[Fri Apr 21 12:36:57 2023]
+rule canu_denovo_assembly:
+    input: /catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/G10474/NECAT/1-consensus/cns_final.fasta.gz
+    output: results/G10474/assembly/canu
+    log: results/G10474/assembly/canu.log
+    jobid: 1
+    reason: Missing output files: results/G10474/assembly/canu
+    wildcards: sample=G10474
+    threads: 80
+    resources: tmpdir=/tmp
+
+Activating conda environment: denovo_assembly_pipeline
+-- canu 2.2
+--
+-- CITATIONS
+--
+-- For 'standard' assemblies of PacBio or Nanopore reads:
+--   Koren S, Walenz BP, Berlin K, Miller JR, Phillippy AM.
+--   Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation.
+--   Genome Res. 2017 May;27(5):722-736.
+--   http://doi.org/10.1101/gr.215087.116
+-- 
+-- Read and contig alignments during correction and consensus use:
+--   Šošic M, Šikic M.
+--   Edlib: a C/C ++ library for fast, exact sequence alignment using edit distance.
+--   Bioinformatics. 2017 May 1;33(9):1394-1395.
+--   http://doi.org/10.1093/bioinformatics/btw753
+-- 
+-- Overlaps are generated using:
+--   Berlin K, et al.
+--   Assembling large genomes with single-molecule sequencing and locality-sensitive hashing.
+--   Nat Biotechnol. 2015 Jun;33(6):623-30.
+--   http://doi.org/10.1038/nbt.3238
+-- 
+--   Myers EW, et al.
+--   A Whole-Genome Assembly of Drosophila.
+--   Science. 2000 Mar 24;287(5461):2196-204.
+--   http://doi.org/10.1126/science.287.5461.2196
+-- 
+-- Corrected read consensus sequences are generated using an algorithm derived from FALCON-sense:
+--   Chin CS, et al.
+--   Phased diploid genome assembly with single-molecule real-time sequencing.
+--   Nat Methods. 2016 Dec;13(12):1050-1054.
+--   http://doi.org/10.1038/nmeth.4035
+-- 
+-- Contig consensus sequences are generated using an algorithm derived from pbdagcon:
+--   Chin CS, et al.
+--   Nonhybrid, finished microbial genome assemblies from long-read SMRT sequencing data.
+--   Nat Methods. 2013 Jun;10(6):563-9
+--   http://doi.org/10.1038/nmeth.2474
+-- 
+-- CONFIGURE CANU
+--
+-- Detected Java(TM) Runtime Environment '17.0.3-internal' (from '/home/scruz/.conda/envs/denovo_assembly_pipeline/lib/jvm/bin/java') without -d64 support.
+-- Detected gnuplot version '5.4 patchlevel 5   ' (from 'gnuplot') and image format 'png'.
+--
+-- Detected 80 CPUs and 504 gigabytes of memory on the local machine.
+--
+-- Local machine mode enabled; grid support not detected or not allowed.
+--
+-- Job limits:
+--     80 CPUs              (maxThreads option).
+--
+--                                (tag)Concurrency
+--                         (tag)Threads          |
+--                (tag)Memory         |          |
+--        (tag)             |         |          |       total usage      algorithm
+--        -------  ----------  --------   --------  --------------------  -----------------------------
+-- Local: meryl     24.000 GB    8 CPUs x  10 jobs   240.000 GB  80 CPUs  (k-mer counting)
+-- Local: hap       12.000 GB   20 CPUs x   4 jobs    48.000 GB  80 CPUs  (read-to-haplotype assignment)
+-- Local: cormhap   32.000 GB   16 CPUs x   5 jobs   160.000 GB  80 CPUs  (overlap detection with mhap)
+-- Local: obtovl    16.000 GB   16 CPUs x   5 jobs    80.000 GB  80 CPUs  (overlap detection)
+-- Local: utgovl    16.000 GB   16 CPUs x   5 jobs    80.000 GB  80 CPUs  (overlap detection)
+-- Local: cor        -.--- GB    4 CPUs x   - jobs     -.--- GB   - CPUs  (read correction)
+-- Local: ovb        4.000 GB    1 CPU  x  80 jobs   320.000 GB  80 CPUs  (overlap store bucketizer)
+-- Local: ovs       16.000 GB    1 CPU  x  31 jobs   496.000 GB  31 CPUs  (overlap store sorting)
+-- Local: red       32.000 GB    8 CPUs x  10 jobs   320.000 GB  80 CPUs  (read error detection)
+-- Local: oea        8.000 GB    1 CPU  x  63 jobs   504.000 GB  63 CPUs  (overlap error adjustment)
+-- Local: bat      256.000 GB   16 CPUs x   1 job    256.000 GB  16 CPUs  (contig construction with bogart)
+-- Local: cns        -.--- GB    8 CPUs x   - jobs     -.--- GB   - CPUs  (consensus)
+--
+-- Found untrimmed corrected Nanopore reads in the input files.
+--
+-- Generating assembly 'G10474' in '/home/scruz/pipelines/denovo_assembly/results/G10474/assembly/canu':
+--   genomeSize:
+--     590000000
+--
+--   Overlap Generation Limits:
+--     corOvlErrorRate 0.3200 ( 32.00%)
+--     obtOvlErrorRate 0.1200 ( 12.00%)
+--     utgOvlErrorRate 0.1200 ( 12.00%)
+--
+--   Overlap Processing Limits:
+--     corErrorRate    0.3000 ( 30.00%)
+--     obtErrorRate    0.1200 ( 12.00%)
+--     utgErrorRate    0.1200 ( 12.00%)
+--     cnsErrorRate    0.2000 ( 20.00%)
+--
+--   Stages to run:
+--     trim corrected reads.
+--     assemble corrected and trimmed reads.
+--
+--
+-- Correction skipped; not enabled.
+--
+-- BEGIN TRIMMING
+----------------------------------------
+-- Starting command on Fri Apr 21 12:36:59 2023 with 1045.344 GB free disk space
+
+    cd .
+    ./G10474.seqStore.sh \
+    > ./G10474.seqStore.err 2>&1
+
+-- Finished on Fri Apr 21 12:39:50 2023 (171 seconds) with 1041.046 GB free disk space
+----------------------------------------
+--
+-- In sequence store './G10474.seqStore':
+--   Found 544087 reads.
+--   Found 17700092005 bases (30 times coverage).
+--    Histogram of corrected reads:
+--    
+--    G=17700092005                      sum of  ||               length     num
+--    NG         length     index       lengths  ||                range    seqs
+--    ----- ------------ --------- ------------  ||  ------------------- -------
+--    00010        58557     25573   1770053358  ||      19584-22918      122364|---------------------------------------------------------------
+--    00020        48495     59058   3540051804  ||      22919-26253       93276|-------------------------------------------------
+--    00030        42062     98375   5310067205  ||      26254-29588       73045|--------------------------------------
+--    00040        37205    143195   7080053477  ||      29589-32923       56976|------------------------------
+--    00050        33257    193571   8850073479  ||      32924-36258       44375|-----------------------
+--    00060        29879    249761  10620071775  ||      36259-39593       34854|------------------
+--    00070        26933    312183  12390086931  ||      39594-42928       27287|---------------
+--    00080        24243    381474  14160096430  ||      42929-46263       21386|------------
+--    00090        21818    458444  15930097057  ||      46264-49598       16491|---------
+--    00100        19584    544086  17700092005  ||      49599-52933       13060|-------
+--    001.000x              544087  17700092005  ||      52934-56268        9947|------
+--                                               ||      56269-59603        7642|----
+--                                               ||      59604-62938        6018|----
+--                                               ||      62939-66273        4572|---
+--                                               ||      66274-69608        3453|--
+--                                               ||      69609-72943        2565|--
+--                                               ||      72944-76278        1884|-
+--                                               ||      76279-79613        1457|-
+--                                               ||      79614-82948         939|-
+--                                               ||      82949-86283         732|-
+--                                               ||      86284-89618         503|-
+--                                               ||      89619-92953         393|-
+--                                               ||      92954-96288         269|-
+--                                               ||      96289-99623         178|-
+--                                               ||      99624-102958        145|-
+--                                               ||     102959-106293         97|-
+--                                               ||     106294-109628         61|-
+--                                               ||     109629-112963         37|-
+--                                               ||     112964-116298         32|-
+--                                               ||     116299-119633         14|-
+--                                               ||     119634-122968         11|-
+--                                               ||     122969-126303          4|-
+--                                               ||     126304-129638          8|-
+--                                               ||     129639-132973          3|-
+--                                               ||     132974-136308          0|
+--                                               ||     136309-139643          2|-
+--                                               ||     139644-142978          1|-
+--                                               ||     142979-146313          1|-
+--                                               ||     146314-149648          1|-
+--                                               ||     149649-152983          1|-
+--                                               ||     152984-156318          0|
+--                                               ||     156319-159653          1|-
+--                                               ||     159654-162988          0|
+--                                               ||     162989-166323          0|
+--                                               ||     166324-169658          0|
+--                                               ||     169659-172993          0|
+--                                               ||     172994-176328          1|-
+--                                               ||     176329-179663          0|
+--                                               ||     179664-182998          0|
+--                                               ||     182999-186333          1|-
+--    
+----------------------------------------
+-- Starting command on Fri Apr 21 12:39:50 2023 with 1041.043 GB free disk space
+
+    cd trimming/0-mercounts
+    ./meryl-configure.sh \
+    > ./meryl-configure.err 2>&1
+
+-- Finished on Fri Apr 21 12:39:51 2023 (one second) with 1041.043 GB free disk space
+----------------------------------------
+--  segments   memory batches
+--  -------- -------- -------
+--        01 18.82 GB       4
+--        02 14.42 GB       3
+--        04 14.42 GB       2
+--        06  9.81 GB       2
+--        08  7.46 GB       2
+--        12  5.25 GB       2
+--        16  3.86 GB       2
+--        20  3.32 GB       2
+--        24  2.72 GB       2
+--        32  2.20 GB       2
+--        40  1.76 GB       2
+--        48  1.47 GB       2
+--        56  1.26 GB       2
+--        64  1.10 GB       2
+--        96  0.73 GB       2
+--
+--  For 544087 reads with 17700092005 bases, limit to 177 batches.
+--  Will count kmers using 04 jobs, each using 16 GB and 8 threads.
+--
+-- Finished stage 'merylConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Apr 21 12:39:51 2023 with 1041.043 GB free disk space (4 processes; 10 concurrently)
+
+    cd trimming/0-mercounts
+    ./meryl-count.sh 1 > ./meryl-count.000001.out 2>&1
+    ./meryl-count.sh 2 > ./meryl-count.000002.out 2>&1
+    ./meryl-count.sh 3 > ./meryl-count.000003.out 2>&1
+    ./meryl-count.sh 4 > ./meryl-count.000004.out 2>&1
+
+-- Finished on Fri Apr 21 12:44:15 2023 (264 seconds) with 1032.638 GB free disk space
+----------------------------------------
+-- Found 4 Kmer counting (meryl) outputs.
+-- Finished stage 'obt-merylCountCheck', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Apr 21 12:44:15 2023 with 1032.638 GB free disk space (1 processes; 10 concurrently)
+
+    cd trimming/0-mercounts
+    ./meryl-process.sh 1 > ./meryl-process.000001.out 2>&1
+
+-- Finished on Fri Apr 21 12:44:30 2023 (15 seconds) with 1038.993 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.  Kmer frequency histogram:
+--
+--  22-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1         0                                                                        0.0000 0.0000
+--       2-     2   6362016 ***                                                                    0.0177 0.0007
+--       3-     4   3126223 *                                                                      0.0235 0.0011
+--       5-     7   1487672                                                                        0.0283 0.0015
+--       8-    11   1148900                                                                        0.0314 0.0019
+--      12-    16   6802422 ***                                                                    0.0353 0.0028
+--      17-    22  54110428 ***************************                                            0.0634 0.0118
+--      23-    29 139484718 ********************************************************************** 0.2514 0.0927
+--      30-    37  97342516 ************************************************                       0.6439 0.3085
+--      38-    46  18757315 *********                                                              0.8765 0.4678
+--      47-    56   6962521 ***                                                                    0.9170 0.5020
+--      57-    67   6357399 ***                                                                    0.9366 0.5231
+--      68-    79   2959654 *                                                                      0.9532 0.5442
+--      80-    92   2563136 *                                                                      0.9611 0.5560
+--      93-   106   1773509                                                                        0.9681 0.5684
+--     107-   121   1462808                                                                        0.9729 0.5782
+--     122-   137   1122212                                                                        0.9769 0.5875
+--     138-   154    939400                                                                        0.9799 0.5957
+--     155-   172    722778                                                                        0.9825 0.6034
+--     173-   191    594442                                                                        0.9845 0.6100
+--     192-   211    497856                                                                        0.9861 0.6161
+--     212-   232    419546                                                                        0.9875 0.6217
+--     233-   254    360289                                                                        0.9887 0.6270
+--     255-   277    308081                                                                        0.9897 0.6319
+--     278-   301    261824                                                                        0.9905 0.6365
+--     302-   326    238546                                                                        0.9912 0.6408
+--     327-   352    209710                                                                        0.9919 0.6451
+--     353-   379    184515                                                                        0.9925 0.6491
+--     380-   407    166440                                                                        0.9930 0.6529
+--     408-   436    148065                                                                        0.9934 0.6566
+--     437-   466    133755                                                                        0.9939 0.6601
+--     467-   497    122311                                                                        0.9942 0.6635
+--     498-   529    110590                                                                        0.9946 0.6669
+--     530-   562    100556                                                                        0.9949 0.6701
+--     563-   596     90445                                                                        0.9952 0.6732
+--     597-   631     83159                                                                        0.9954 0.6762
+--     632-   667     75425                                                                        0.9956 0.6791
+--     668-   704     70170                                                                        0.9958 0.6818
+--     705-   742     63400                                                                        0.9960 0.6846
+--     743-   781     59829                                                                        0.9962 0.6872
+--     782-   821     54889                                                                        0.9964 0.6897
+--
+--           0 (max occurrences)
+-- 17624119948 (total mers, non-unique)
+--   359085111 (distinct mers, non-unique)
+--           0 (unique mers)
+-- Finished stage 'meryl-process', reset canuIteration.
+--
+-- Removing meryl database 'trimming/0-mercounts/G10474.ms22'.
+--
+-- OVERLAPPER (normal) (trimming) erate=0.12
+--
+----------------------------------------
+-- Starting command on Fri Apr 21 12:44:30 2023 with 1041.023 GB free disk space
+
+    cd trimming/1-overlapper
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/overlapInCorePartition \
+     -S  ../../G10474.seqStore \
+     -hl 320000000 \
+     -rl 15000000000 \
+     -ol 500 \
+     -o  ./G10474.partition \
+    > ./G10474.partition.err 2>&1
+
+-- Finished on Fri Apr 21 12:44:30 2023 (fast as lightning) with 1041.023 GB free disk space
+----------------------------------------
+--
+-- Configured 66 overlapInCore jobs.
+-- Finished stage 'obt-overlapConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'obtovl' concurrent execution on Fri Apr 21 12:44:30 2023 with 1041.023 GB free disk space (66 processes; 5 concurrently)
+
+    cd trimming/1-overlapper
+    ./overlap.sh 1 > ./overlap.000001.out 2>&1
+    ./overlap.sh 2 > ./overlap.000002.out 2>&1
+    ./overlap.sh 3 > ./overlap.000003.out 2>&1
+    ./overlap.sh 4 > ./overlap.000004.out 2>&1
+    ./overlap.sh 5 > ./overlap.000005.out 2>&1
+    ./overlap.sh 6 > ./overlap.000006.out 2>&1
+    ./overlap.sh 7 > ./overlap.000007.out 2>&1
+    ./overlap.sh 8 > ./overlap.000008.out 2>&1
+    ./overlap.sh 9 > ./overlap.000009.out 2>&1
+    ./overlap.sh 10 > ./overlap.000010.out 2>&1
+    ./overlap.sh 11 > ./overlap.000011.out 2>&1
+    ./overlap.sh 12 > ./overlap.000012.out 2>&1
+    ./overlap.sh 13 > ./overlap.000013.out 2>&1
+    ./overlap.sh 14 > ./overlap.000014.out 2>&1
+    ./overlap.sh 15 > ./overlap.000015.out 2>&1
+    ./overlap.sh 16 > ./overlap.000016.out 2>&1
+    ./overlap.sh 17 > ./overlap.000017.out 2>&1
+    ./overlap.sh 18 > ./overlap.000018.out 2>&1
+    ./overlap.sh 19 > ./overlap.000019.out 2>&1
+    ./overlap.sh 20 > ./overlap.000020.out 2>&1
+    ./overlap.sh 21 > ./overlap.000021.out 2>&1
+    ./overlap.sh 22 > ./overlap.000022.out 2>&1
+    ./overlap.sh 23 > ./overlap.000023.out 2>&1
+    ./overlap.sh 24 > ./overlap.000024.out 2>&1
+    ./overlap.sh 25 > ./overlap.000025.out 2>&1
+    ./overlap.sh 26 > ./overlap.000026.out 2>&1
+    ./overlap.sh 27 > ./overlap.000027.out 2>&1
+    ./overlap.sh 28 > ./overlap.000028.out 2>&1
+    ./overlap.sh 29 > ./overlap.000029.out 2>&1
+    ./overlap.sh 30 > ./overlap.000030.out 2>&1
+    ./overlap.sh 31 > ./overlap.000031.out 2>&1
+    ./overlap.sh 32 > ./overlap.000032.out 2>&1
+    ./overlap.sh 33 > ./overlap.000033.out 2>&1
+    ./overlap.sh 34 > ./overlap.000034.out 2>&1
+    ./overlap.sh 35 > ./overlap.000035.out 2>&1
+    ./overlap.sh 36 > ./overlap.000036.out 2>&1
+    ./overlap.sh 37 > ./overlap.000037.out 2>&1
+    ./overlap.sh 38 > ./overlap.000038.out 2>&1
+    ./overlap.sh 39 > ./overlap.000039.out 2>&1
+    ./overlap.sh 40 > ./overlap.000040.out 2>&1
+    ./overlap.sh 41 > ./overlap.000041.out 2>&1
+    ./overlap.sh 42 > ./overlap.000042.out 2>&1
+    ./overlap.sh 43 > ./overlap.000043.out 2>&1
+    ./overlap.sh 44 > ./overlap.000044.out 2>&1
+    ./overlap.sh 45 > ./overlap.000045.out 2>&1
+    ./overlap.sh 46 > ./overlap.000046.out 2>&1
+    ./overlap.sh 47 > ./overlap.000047.out 2>&1
+    ./overlap.sh 48 > ./overlap.000048.out 2>&1
+    ./overlap.sh 49 > ./overlap.000049.out 2>&1
+    ./overlap.sh 50 > ./overlap.000050.out 2>&1
+    ./overlap.sh 51 > ./overlap.000051.out 2>&1
+    ./overlap.sh 52 > ./overlap.000052.out 2>&1
+    ./overlap.sh 53 > ./overlap.000053.out 2>&1
+    ./overlap.sh 54 > ./overlap.000054.out 2>&1
+    ./overlap.sh 55 > ./overlap.000055.out 2>&1
+    ./overlap.sh 56 > ./overlap.000056.out 2>&1
+    ./overlap.sh 57 > ./overlap.000057.out 2>&1
+    ./overlap.sh 58 > ./overlap.000058.out 2>&1
+    ./overlap.sh 59 > ./overlap.000059.out 2>&1
+    ./overlap.sh 60 > ./overlap.000060.out 2>&1
+    ./overlap.sh 61 > ./overlap.000061.out 2>&1
+    ./overlap.sh 62 > ./overlap.000062.out 2>&1
+    ./overlap.sh 63 > ./overlap.000063.out 2>&1
+    ./overlap.sh 64 > ./overlap.000064.out 2>&1
+    ./overlap.sh 65 > ./overlap.000065.out 2>&1
+    ./overlap.sh 66 > ./overlap.000066.out 2>&1
+
+-- Finished on Fri Apr 28 05:39:02 2023 (579272 seconds, like watching paint dry) with 857.497 GB free disk space
+----------------------------------------
+-- Found 66 overlapInCore output files.
+--
+-- overlapInCore compute 'trimming/1-overlapper':
+--   kmer hits
+--     with no overlap      29586271485  840.681818 +- 317415808.687
+--     with an overlap       7869595058  288.757576 +- 83640069.114
+--
+--   overlaps                7868543768  360.121212 +- 83629146.937
+--     contained                      0           0 +- 0
+--     dovetail                       0           0 +- 0
+--
+--   overlaps rejected
+--     multiple per pair              0           0 +- 0
+--     bad short window               0           0 +- 0
+--     bad long window                0           0 +- 0
+-- Finished stage 'obt-overlapCheck', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 05:39:02 2023 with 857.497 GB free disk space
+
+    cd trimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/ovStoreConfig \
+     -S ../G10474.seqStore \
+     -M 8-16 \
+     -L ./1-overlapper/ovljob.files \
+     -create ./G10474.ovlStore.config \
+     > ./G10474.ovlStore.config.txt \
+    2> ./G10474.ovlStore.config.err
+
+-- Finished on Fri Apr 28 05:39:02 2023 (lickety-split) with 857.496 GB free disk space
+----------------------------------------
+--
+-- Creating overlap store trimming/G10474.ovlStore using:
+--     27 buckets
+--     27 slices
+--        using at most 15 GB memory each
+-- Finished stage 'obt-overlapStoreConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'ovB' concurrent execution on Fri Apr 28 05:39:02 2023 with 857.496 GB free disk space (27 processes; 80 concurrently)
+
+    cd trimming/G10474.ovlStore.BUILDING
+    ./scripts/1-bucketize.sh 1 > ./logs/1-bucketize.000001.out 2>&1
+    ./scripts/1-bucketize.sh 2 > ./logs/1-bucketize.000002.out 2>&1
+    ./scripts/1-bucketize.sh 3 > ./logs/1-bucketize.000003.out 2>&1
+    ./scripts/1-bucketize.sh 4 > ./logs/1-bucketize.000004.out 2>&1
+    ./scripts/1-bucketize.sh 5 > ./logs/1-bucketize.000005.out 2>&1
+    ./scripts/1-bucketize.sh 6 > ./logs/1-bucketize.000006.out 2>&1
+    ./scripts/1-bucketize.sh 7 > ./logs/1-bucketize.000007.out 2>&1
+    ./scripts/1-bucketize.sh 8 > ./logs/1-bucketize.000008.out 2>&1
+    ./scripts/1-bucketize.sh 9 > ./logs/1-bucketize.000009.out 2>&1
+    ./scripts/1-bucketize.sh 10 > ./logs/1-bucketize.000010.out 2>&1
+    ./scripts/1-bucketize.sh 11 > ./logs/1-bucketize.000011.out 2>&1
+    ./scripts/1-bucketize.sh 12 > ./logs/1-bucketize.000012.out 2>&1
+    ./scripts/1-bucketize.sh 13 > ./logs/1-bucketize.000013.out 2>&1
+    ./scripts/1-bucketize.sh 14 > ./logs/1-bucketize.000014.out 2>&1
+    ./scripts/1-bucketize.sh 15 > ./logs/1-bucketize.000015.out 2>&1
+    ./scripts/1-bucketize.sh 16 > ./logs/1-bucketize.000016.out 2>&1
+    ./scripts/1-bucketize.sh 17 > ./logs/1-bucketize.000017.out 2>&1
+    ./scripts/1-bucketize.sh 18 > ./logs/1-bucketize.000018.out 2>&1
+    ./scripts/1-bucketize.sh 19 > ./logs/1-bucketize.000019.out 2>&1
+    ./scripts/1-bucketize.sh 20 > ./logs/1-bucketize.000020.out 2>&1
+    ./scripts/1-bucketize.sh 21 > ./logs/1-bucketize.000021.out 2>&1
+    ./scripts/1-bucketize.sh 22 > ./logs/1-bucketize.000022.out 2>&1
+    ./scripts/1-bucketize.sh 23 > ./logs/1-bucketize.000023.out 2>&1
+    ./scripts/1-bucketize.sh 24 > ./logs/1-bucketize.000024.out 2>&1
+    ./scripts/1-bucketize.sh 25 > ./logs/1-bucketize.000025.out 2>&1
+    ./scripts/1-bucketize.sh 26 > ./logs/1-bucketize.000026.out 2>&1
+    ./scripts/1-bucketize.sh 27 > ./logs/1-bucketize.000027.out 2>&1
+
+-- Finished on Fri Apr 28 05:41:03 2023 (121 seconds) with 559.249 GB free disk space
+----------------------------------------
+-- Overlap store bucketizer finished.
+-- Finished stage 'obt-overlapStoreBucketizerCheck', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'ovS' concurrent execution on Fri Apr 28 05:41:03 2023 with 559.249 GB free disk space (27 processes; 31 concurrently)
+
+    cd trimming/G10474.ovlStore.BUILDING
+    ./scripts/2-sort.sh 1 > ./logs/2-sort.000001.out 2>&1
+    ./scripts/2-sort.sh 2 > ./logs/2-sort.000002.out 2>&1
+    ./scripts/2-sort.sh 3 > ./logs/2-sort.000003.out 2>&1
+    ./scripts/2-sort.sh 4 > ./logs/2-sort.000004.out 2>&1
+    ./scripts/2-sort.sh 5 > ./logs/2-sort.000005.out 2>&1
+    ./scripts/2-sort.sh 6 > ./logs/2-sort.000006.out 2>&1
+    ./scripts/2-sort.sh 7 > ./logs/2-sort.000007.out 2>&1
+    ./scripts/2-sort.sh 8 > ./logs/2-sort.000008.out 2>&1
+    ./scripts/2-sort.sh 9 > ./logs/2-sort.000009.out 2>&1
+    ./scripts/2-sort.sh 10 > ./logs/2-sort.000010.out 2>&1
+    ./scripts/2-sort.sh 11 > ./logs/2-sort.000011.out 2>&1
+    ./scripts/2-sort.sh 12 > ./logs/2-sort.000012.out 2>&1
+    ./scripts/2-sort.sh 13 > ./logs/2-sort.000013.out 2>&1
+    ./scripts/2-sort.sh 14 > ./logs/2-sort.000014.out 2>&1
+    ./scripts/2-sort.sh 15 > ./logs/2-sort.000015.out 2>&1
+    ./scripts/2-sort.sh 16 > ./logs/2-sort.000016.out 2>&1
+    ./scripts/2-sort.sh 17 > ./logs/2-sort.000017.out 2>&1
+    ./scripts/2-sort.sh 18 > ./logs/2-sort.000018.out 2>&1
+    ./scripts/2-sort.sh 19 > ./logs/2-sort.000019.out 2>&1
+    ./scripts/2-sort.sh 20 > ./logs/2-sort.000020.out 2>&1
+    ./scripts/2-sort.sh 21 > ./logs/2-sort.000021.out 2>&1
+    ./scripts/2-sort.sh 22 > ./logs/2-sort.000022.out 2>&1
+    ./scripts/2-sort.sh 23 > ./logs/2-sort.000023.out 2>&1
+    ./scripts/2-sort.sh 24 > ./logs/2-sort.000024.out 2>&1
+    ./scripts/2-sort.sh 25 > ./logs/2-sort.000025.out 2>&1
+    ./scripts/2-sort.sh 26 > ./logs/2-sort.000026.out 2>&1
+    ./scripts/2-sort.sh 27 > ./logs/2-sort.000027.out 2>&1
+
+-- Finished on Fri Apr 28 05:45:25 2023 (262 seconds) with 563.967 GB free disk space
+----------------------------------------
+-- Overlap store sorter finished.
+-- Finished stage 'obt-overlapStoreSorterCheck', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 05:45:25 2023 with 563.967 GB free disk space
+
+    cd trimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/ovStoreIndexer \
+      -O  ./G10474.ovlStore.BUILDING \
+      -S ../G10474.seqStore \
+      -C  ./G10474.ovlStore.config \
+      -delete \
+    > ./G10474.ovlStore.BUILDING.index.err 2>&1
+
+-- Finished on Fri Apr 28 05:45:26 2023 (one second) with 564.284 GB free disk space
+----------------------------------------
+-- Overlap store indexer finished.
+-- Checking store.
+----------------------------------------
+-- Starting command on Fri Apr 28 05:45:26 2023 with 564.284 GB free disk space
+
+    cd trimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/ovStoreDump \
+     -S ../G10474.seqStore \
+     -O  ./G10474.ovlStore \
+     -counts \
+     > ./G10474.ovlStore/counts.dat 2> ./G10474.ovlStore/counts.err
+
+-- Finished on Fri Apr 28 05:45:26 2023 (like a bat out of hell) with 564.278 GB free disk space
+----------------------------------------
+--
+-- Overlap store 'trimming/G10474.ovlStore' successfully constructed.
+-- Found 15739190116 overlaps for 533758 reads; 10329 reads have no overlaps.
+--
+--
+-- Purged 156.512 GB in 198 overlap output files.
+-- Finished stage 'obt-createOverlapStore', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 05:45:27 2023 with 720.797 GB free disk space
+
+    cd trimming/3-overlapbasedtrimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/trimReads \
+      -S  ../../G10474.seqStore \
+      -O  ../G10474.ovlStore \
+      -Co ./G10474.1.trimReads.clear \
+      -e  0.12 \
+      -minlength 1000 \
+      -ol 500 \
+      -oc 2 \
+      -o  ./G10474.1.trimReads \
+    >     ./G10474.1.trimReads.err 2>&1
+
+-- Finished on Fri Apr 28 08:14:29 2023 (8942 seconds) with 720.752 GB free disk space
+----------------------------------------
+--  PARAMETERS:
+--  ----------
+--     1000    (reads trimmed below this many bases are deleted)
+--   0.1200    (use overlaps at or below this fraction error)
+--      500    (break region if overlap is less than this long, for 'largest covered' algorithm)
+--        2    (break region if overlap coverage is less than this many reads, for 'largest covered' algorithm)
+--  
+--  INPUT READS:
+--  -----------
+--  544087 reads  17700092005 bases (reads processed)
+--       0 reads            0 bases (reads not processed, previously deleted)
+--       0 reads            0 bases (reads not processed, in a library where trimming isn't allowed)
+--  
+--  OUTPUT READS:
+--  ------------
+--  123968 reads   3767705928 bases (trimmed reads output)
+--  409395 reads  13286743104 bases (reads with no change, kept as is)
+--   10329 reads    270632477 bases (reads with no overlaps, deleted)
+--     395 reads     10797916 bases (reads with short trimmed length, deleted)
+--  
+--  TRIMMING DETAILS:
+--  ----------------
+--   73166 reads    180045875 bases (bases trimmed from the 5' end of a read)
+--   61106 reads    184166705 bases (bases trimmed from the 3' end of a read)
+-- Finished stage 'obt-trimReads', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 08:14:29 2023 with 720.752 GB free disk space
+
+    cd trimming/3-overlapbasedtrimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/splitReads \
+      -S  ../../G10474.seqStore \
+      -O  ../G10474.ovlStore \
+      -Ci ./G10474.1.trimReads.clear \
+      -Co ./G10474.2.splitReads.clear \
+      -e  0.12 \
+      -minlength 1000 \
+      -o  ./G10474.2.splitReads \
+    >     ./G10474.2.splitReads.err 2>&1
+
+-- Finished on Fri Apr 28 10:02:43 2023 (6494 seconds) with 720.748 GB free disk space
+----------------------------------------
+--  PARAMETERS:
+--  ----------
+--     1000    (reads trimmed below this many bases are deleted)
+--   0.1200    (use overlaps at or below this fraction error)
+--  INPUT READS:
+--  -----------
+--  533363 reads  17418661612 bases (reads processed)
+--   10724 reads    281430393 bases (reads not processed, previously deleted)
+--       0 reads            0 bases (reads not processed, in a library where trimming isn't allowed)
+--  
+--  PROCESSED:
+--  --------
+--       0 reads            0 bases (no overlaps)
+--       7 reads       169687 bases (no coverage after adjusting for trimming done already)
+--       0 reads            0 bases (processed for chimera)
+--       0 reads            0 bases (processed for spur)
+--  533356 reads  17418491925 bases (processed for subreads)
+--  
+--  READS WITH SIGNALS:
+--  ------------------
+--       0 reads            0 signals (number of 5' spur signal)
+--       0 reads            0 signals (number of 3' spur signal)
+--       0 reads            0 signals (number of chimera signal)
+--     122 reads          145 signals (number of subread signal)
+--  
+--  SIGNALS:
+--  -------
+--       0 reads            0 bases (size of 5' spur signal)
+--       0 reads            0 bases (size of 3' spur signal)
+--       0 reads            0 bases (size of chimera signal)
+--     145 reads        55382 bases (size of subread signal)
+--  
+--  TRIMMING:
+--  --------
+--      47 reads       468977 bases (trimmed from the 5' end of the read)
+--      76 reads       818520 bases (trimmed from the 3' end of the read)
+-- Finished stage 'obt-splitReads', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 10:02:43 2023 with 720.748 GB free disk space
+
+    cd trimming/3-overlapbasedtrimming
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/loadTrimmedReads \
+      -S ../../G10474.seqStore \
+      -c ./G10474.2.splitReads.clear \
+    > ./G10474.loadTrimmedReads.err 2>&1
+
+-- Finished on Fri Apr 28 10:04:02 2023 (79 seconds) with 720.67 GB free disk space
+----------------------------------------
+--
+-- In sequence store './G10474.seqStore':
+--   Found 533363 reads.
+--   Found 17053161535 bases (28.9 times coverage).
+--    Histogram of corrected-trimmed reads:
+--    
+--    G=17053161535                      sum of  ||               length     num
+--    NG         length     index       lengths  ||                range    seqs
+--    ----- ------------ --------- ------------  ||  ------------------- -------
+--    00010        57906     25010   1705328204  ||       1014-3771          272|-
+--    00020        48089     57575   3410674307  ||       3772-6529          463|-
+--    00030        41750     95756   5115982798  ||       6530-9287          845|-
+--    00040        36946    139242   6821300513  ||       9288-12045        2227|--
+--    00050        33025    188103   8526608791  ||      12046-14803        3135|---
+--    00060        29661    242630  10231907632  ||      14804-17561        4248|---
+--    00070        26694    303263  11937214842  ||      17562-20319       33717|------------------------
+--    00080        23985    370684  13642546502  ||      20320-23077       91507|---------------------------------------------------------------
+--    00090        21545    445722  15347861096  ||      23078-25835       73710|---------------------------------------------------
+--    00100         1014    533362  17053161535  ||      25836-28593       60297|------------------------------------------
+--    001.000x              533363  17053161535  ||      28594-31351       49320|----------------------------------
+--                                               ||      31352-34109       40471|----------------------------
+--                                               ||      34110-36867       33002|-----------------------
+--                                               ||      36868-39625       26918|-------------------
+--                                               ||      39626-42383       22090|----------------
+--                                               ||      42384-45141       18205|-------------
+--                                               ||      45142-47899       14439|----------
+--                                               ||      47900-50657       12004|---------
+--                                               ||      50658-53415        9634|-------
+--                                               ||      53416-56173        7758|------
+--                                               ||      56174-58931        6222|-----
+--                                               ||      58932-61689        5052|----
+--                                               ||      61690-64447        4018|---
+--                                               ||      64448-67205        3300|---
+--                                               ||      67206-69963        2470|--
+--                                               ||      69964-72721        1945|--
+--                                               ||      72722-75479        1514|--
+--                                               ||      75480-78237        1194|-
+--                                               ||      78238-80995         905|-
+--                                               ||      80996-83753         594|-
+--                                               ||      83754-86511         517|-
+--                                               ||      86512-89269         350|-
+--                                               ||      89270-92027         297|-
+--                                               ||      92028-94785         213|-
+--                                               ||      94786-97543         144|-
+--                                               ||      97544-100301        112|-
+--                                               ||     100302-103059         82|-
+--                                               ||     103060-105817         67|-
+--                                               ||     105818-108575         37|-
+--                                               ||     108576-111333         22|-
+--                                               ||     111334-114091         21|-
+--                                               ||     114092-116849          6|-
+--                                               ||     116850-119607          8|-
+--                                               ||     119608-122365          4|-
+--                                               ||     122366-125123          1|-
+--                                               ||     125124-127881          1|-
+--                                               ||     127882-130639          3|-
+--                                               ||     130640-133397          1|-
+--                                               ||     133398-136155          0|
+--                                               ||     136156-138913          1|-
+--    
+--
+-- No trimmed reads generated, overlaps used for trimming saved.
+-- Finished stage 'obt-dumpReads', reset canuIteration.
+----------------------------------------
+-- Starting command on Fri Apr 28 10:04:02 2023 with 720.713 GB free disk space
+
+    cd .
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/sqStoreDumpFASTQ \
+      -trimmed \
+      -S ./G10474.seqStore \
+      -o ./G10474.trimmedReads.gz \
+      -fasta \
+      -trimmed -normal -nolibname \
+    > ./G10474.trimmedReads.fasta.err 2>&1
+
+-- Finished on Fri Apr 28 10:08:58 2023 (296 seconds) with 715.632 GB free disk space
+----------------------------------------
+--
+-- Trimmed reads saved in 'G10474.trimmedReads.fasta.gz'.
+-- Finished stage 'cor-dumpTrimmedReads', reset canuIteration.
+--
+-- BEGIN ASSEMBLY
+----------------------------------------
+-- Starting command on Fri Apr 28 10:08:58 2023 with 715.632 GB free disk space
+
+    cd unitigging/0-mercounts
+    ./meryl-configure.sh \
+    > ./meryl-configure.err 2>&1
+
+-- Finished on Fri Apr 28 10:08:59 2023 (one second) with 715.632 GB free disk space
+----------------------------------------
+--  segments   memory batches
+--  -------- -------- -------
+--        01 13.92 GB       5
+--        02 13.92 GB       3
+--        04 13.92 GB       2
+--        06  9.41 GB       2
+--        08  7.36 GB       2
+--        12  5.06 GB       2
+--        16  3.73 GB       2
+--        20  3.12 GB       2
+--        24  2.55 GB       2
+--        32  2.12 GB       2
+--        40  1.70 GB       2
+--        48  1.42 GB       2
+--        56  1.21 GB       2
+--        64  1.06 GB       2
+--        96  0.71 GB       2
+--
+--  For 533363 reads with 17053161535 bases, limit to 170 batches.
+--  Will count kmers using 04 jobs, each using 15 GB and 8 threads.
+--
+-- Finished stage 'merylConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Apr 28 10:08:59 2023 with 715.632 GB free disk space (4 processes; 10 concurrently)
+
+    cd unitigging/0-mercounts
+    ./meryl-count.sh 1 > ./meryl-count.000001.out 2>&1
+    ./meryl-count.sh 2 > ./meryl-count.000002.out 2>&1
+    ./meryl-count.sh 3 > ./meryl-count.000003.out 2>&1
+    ./meryl-count.sh 4 > ./meryl-count.000004.out 2>&1
+
+-- Finished on Fri Apr 28 10:14:40 2023 (341 seconds) with 707.323 GB free disk space
+----------------------------------------
+-- Found 4 Kmer counting (meryl) outputs.
+-- Finished stage 'utg-merylCountCheck', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'meryl' concurrent execution on Fri Apr 28 10:14:40 2023 with 707.323 GB free disk space (1 processes; 10 concurrently)
+
+    cd unitigging/0-mercounts
+    ./meryl-process.sh 1 > ./meryl-process.000001.out 2>&1
+
+-- Finished on Fri Apr 28 10:14:54 2023 (14 seconds) with 713.587 GB free disk space
+----------------------------------------
+-- Meryl finished successfully.  Kmer frequency histogram:
+--
+--  22-mers                                                                                           Fraction
+--    Occurrences   NumMers                                                                         Unique Total
+--       1-     1         0                                                                        0.0000 0.0000
+--       2-     2   6020177 **                                                                     0.0168 0.0007
+--       3-     4   2963723 *                                                                      0.0223 0.0011
+--       5-     7   1426853                                                                        0.0268 0.0015
+--       8-    11   1293502                                                                        0.0299 0.0019
+--      12-    16   8390301 ****                                                                   0.0345 0.0030
+--      17-    22  60592553 *****************************                                          0.0691 0.0145
+--      23-    29 141687246 ********************************************************************** 0.2766 0.1067
+--      30-    37  89941985 ********************************************                           0.6704 0.3304
+--      38-    46  16268023 ********                                                               0.8833 0.4812
+--      47-    56   7186552 ***                                                                    0.9186 0.5121
+--      57-    67   5950784 **                                                                     0.9389 0.5346
+--      68-    79   2858075 *                                                                      0.9543 0.5549
+--      80-    92   2529616 *                                                                      0.9620 0.5669
+--      93-   106   1690227                                                                        0.9689 0.5795
+--     107-   121   1434206                                                                        0.9735 0.5891
+--     122-   137   1082933                                                                        0.9774 0.5986
+--     138-   154    922278                                                                        0.9804 0.6068
+--     155-   172    695104                                                                        0.9829 0.6146
+--     173-   191    576385                                                                        0.9848 0.6212
+--     192-   211    489498                                                                        0.9864 0.6274
+--     212-   232    408887                                                                        0.9878 0.6331
+--     233-   254    349956                                                                        0.9889 0.6384
+--     255-   277    300716                                                                        0.9899 0.6434
+--     278-   301    257275                                                                        0.9907 0.6481
+--     302-   326    233769                                                                        0.9914 0.6524
+--     327-   352    203889                                                                        0.9920 0.6568
+--     353-   379    180074                                                                        0.9926 0.6608
+--     380-   407    163169                                                                        0.9931 0.6647
+--     408-   436    145062                                                                        0.9936 0.6684
+--     437-   466    131574                                                                        0.9940 0.6720
+--     467-   497    120133                                                                        0.9943 0.6755
+--     498-   529    107608                                                                        0.9947 0.6789
+--     530-   562     97960                                                                        0.9950 0.6821
+--     563-   596     88411                                                                        0.9952 0.6853
+--     597-   631     81131                                                                        0.9955 0.6883
+--     632-   667     74141                                                                        0.9957 0.6912
+--     668-   704     68197                                                                        0.9959 0.6940
+--     705-   742     62774                                                                        0.9961 0.6968
+--     743-   781     58383                                                                        0.9963 0.6995
+--     782-   821     53766                                                                        0.9964 0.7021
+--
+--           0 (max occurrences)
+-- 16993354099 (total mers, non-unique)
+--   358410038 (distinct mers, non-unique)
+--           0 (unique mers)
+-- Finished stage 'meryl-process', reset canuIteration.
+--
+-- Removing meryl database 'unitigging/0-mercounts/G10474.ms22'.
+--
+-- OVERLAPPER (normal) (assembly) erate=0.12
+--
+----------------------------------------
+-- Starting command on Fri Apr 28 10:14:54 2023 with 715.612 GB free disk space
+
+    cd unitigging/1-overlapper
+    /home/scruz/.conda/envs/denovo_assembly_pipeline/bin/overlapInCorePartition \
+     -S  ../../G10474.seqStore \
+     -hl 320000000 \
+     -rl 15000000000 \
+     -ol 500 \
+     -o  ./G10474.partition \
+    > ./G10474.partition.err 2>&1
+
+-- Finished on Fri Apr 28 10:14:54 2023 (like a bat out of hell) with 715.612 GB free disk space
+----------------------------------------
+--
+-- Configured 62 overlapInCore jobs.
+-- Finished stage 'utg-overlapConfigure', reset canuIteration.
+--
+-- Running jobs.  First attempt out of 2.
+----------------------------------------
+-- Starting 'utgovl' concurrent execution on Fri Apr 28 10:14:54 2023 with 715.612 GB free disk space (62 processes; 5 concurrently)
+
+    cd unitigging/1-overlapper
+    ./overlap.sh 1 > ./overlap.000001.out 2>&1
+    ./overlap.sh 2 > ./overlap.000002.out 2>&1
+    ./overlap.sh 3 > ./overlap.000003.out 2>&1
+    ./overlap.sh 4 > ./overlap.000004.out 2>&1
+    ./overlap.sh 5 > ./overlap.000005.out 2>&1
+    ./overlap.sh 6 > ./overlap.000006.out 2>&1
+    ./overlap.sh 7 > ./overlap.000007.out 2>&1
+    ./overlap.sh 8 > ./overlap.000008.out 2>&1
+    ./overlap.sh 9 > ./overlap.000009.out 2>&1
+    ./overlap.sh 10 > ./overlap.000010.out 2>&1
+    ./overlap.sh 11 > ./overlap.000011.out 2>&1
+    ./overlap.sh 12 > ./overlap.000012.out 2>&1
+    ./overlap.sh 13 > ./overlap.000013.out 2>&1
+    ./overlap.sh 14 > ./overlap.000014.out 2>&1
+    ./overlap.sh 15 > ./overlap.000015.out 2>&1
+    ./overlap.sh 16 > ./overlap.000016.out 2>&1
+    ./overlap.sh 17 > ./overlap.000017.out 2>&1
+    ./overlap.sh 18 > ./overlap.000018.out 2>&1
+    ./overlap.sh 19 > ./overlap.000019.out 2>&1
+    ./overlap.sh 20 > ./overlap.000020.out 2>&1
+    ./overlap.sh 21 > ./overlap.000021.out 2>&1
+    ./overlap.sh 22 > ./overlap.000022.out 2>&1
+    ./overlap.sh 23 > ./overlap.000023.out 2>&1
+    ./overlap.sh 24 > ./overlap.000024.out 2>&1
+    ./overlap.sh 25 > ./overlap.000025.out 2>&1
+    ./overlap.sh 26 > ./overlap.000026.out 2>&1
+    ./overlap.sh 27 > ./overlap.000027.out 2>&1
+    ./overlap.sh 28 > ./overlap.000028.out 2>&1
+    ./overlap.sh 29 > ./overlap.000029.out 2>&1
+    ./overlap.sh 30 > ./overlap.000030.out 2>&1
+    ./overlap.sh 31 > ./overlap.000031.out 2>&1
+    ./overlap.sh 32 > ./overlap.000032.out 2>&1
+    ./overlap.sh 33 > ./overlap.000033.out 2>&1
+    ./overlap.sh 34 > ./overlap.000034.out 2>&1
+    ./overlap.sh 35 > ./overlap.000035.out 2>&1
+    ./overlap.sh 36 > ./overlap.000036.out 2>&1
+    ./overlap.sh 37 > ./overlap.000037.out 2>&1
+    ./overlap.sh 38 > ./overlap.000038.out 2>&1
+    ./overlap.sh 39 > ./overlap.000039.out 2>&1
+    ./overlap.sh 40 > ./overlap.000040.out 2>&1
+    ./overlap.sh 41 > ./overlap.000041.out 2>&1
+    ./overlap.sh 42 > ./overlap.000042.out 2>&1
+    ./overlap.sh 43 > ./overlap.000043.out 2>&1
+    ./overlap.sh 44 > ./overlap.000044.out 2>&1
+    ./overlap.sh 45 > ./overlap.000045.out 2>&1

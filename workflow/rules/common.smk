@@ -18,3 +18,7 @@ sample_units.set_index('sample_name', drop=False, inplace=True)
 def get_read_list_per_sample(wildcards):
 	read_file = sample_units.loc[wildcards.sample, 'read_file_path']
 	return [read_file]
+
+def get_corrected_reads(wildcards):
+	return "/catalogue/InterspecificCommonBeanDenovoGenomeAssembly/1.Data/corrected/{sample}/NECAT/1-consensus/cns_final.fasta.gz".format(sample = wildcards.sample)
+
